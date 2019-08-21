@@ -1,17 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-@import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css';
-
-  body {
-   background-color: lightblue;
-  }
-  
-  @media (min-width: 768px)
-{
-    .navbar-toggle {
-        display: none;
-    }
-
-    .navbar-header button {
-        display: block;
-    }
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body{
+    margin: 0%;
 }
