@@ -13,6 +13,6 @@ For example, making a GET request to retrieve all user information:
 
 `curl http://localhost:9000/users`
 
-You can also attach data as part of your request:
+You can also attach data as part of your request.  This request adds a new user to the database:
 
 `curl -X POST -H "Content-Type:application/json" http://localhost:9000/users -d '{"name":"John Doe"}'`
