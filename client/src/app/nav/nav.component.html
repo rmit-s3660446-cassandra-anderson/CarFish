@@ -1,5 +1,8 @@
+<html>
+
+
 <div> 
-<div class="fixed-header">
+<div id="toolbar" class="fixed-header">
   <mat-toolbar color="primary">
     <div fxShow="true" fxHide.gt-sm="true">
       <button mat-icon-button (click)="sidenav.toggle()">
@@ -7,7 +10,7 @@
       </button>
     </div>
 
-    <a mat-button class="companyName" routerLink="/">
+    <a mat-button class="companyName" routerLink="/" >
       <span>{{ appTitle }}</span>
     </a>
     <span class="example-spacer"></span>
@@ -24,7 +27,7 @@
   <app-map></app-map>
   
     
-    <mat-sidenav color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+    <mat-sidenav id="sidebar" color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
         <a mat-button routerLink="/about-us">Account</a>
         <a mat-button routerLink="/prices">Prices</a>
@@ -38,3 +41,4 @@
   
   </div>
 </div>
+</html>
