@@ -1,6 +1,12 @@
 const express = require('express');
 const models = require('./models');
 const routes = require('./routes');
+const mongoose = require('mongoose');
+
+//first check that a database URL is set
+// if(!process.env.DATABASE_URL) {
+//   return console.log("Please set your database URL as an env variable (DATABASE_URL)");
+// }
 
 //initialise the express app
 const app = express();
@@ -15,9 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 //to one of our routes, do it here (i.e. authentication)
 app.use((req, res, next) => {
   // attach the dummy data to the request for testing
-  req.dummy = models;
-  console.log("Dummy data");
-  console.log(req.dummy);
+  req.models = models;
   next();
 });
 
@@ -25,7 +29,11 @@ app.use((req, res, next) => {
 app.use('/users', routes.user);
 app.use('/cars', routes.car);
 
-//start the server
-app.listen(port, () => {
-  console.log("Express app is listening on port " + port);
+//connect to the database and start the server
+mongoose.connect("mongodb+srv://carfish_admin:csit-carfish-2019@cluster0-56z8j.mongodb.net/test?retryWrites=true&w=majority").then(() => {
+  app.listen(port, () => {
+    console.log("Express app is listening on port " + port);
+  });
+}).catch((error) => {
+  handleError(error);
 });
