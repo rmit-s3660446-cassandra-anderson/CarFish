@@ -5,8 +5,8 @@
 #infoBox {
   margin: 15px;
   padding: 5px;
-  border: 2px solid black;
-  outline: 10px solid blue;
+  outline: 10px solid white;
+  background-color: #199fff;
   width: 25%;
 }
 
