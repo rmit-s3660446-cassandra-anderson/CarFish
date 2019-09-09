@@ -1,7 +1,4 @@
-<p *ngIf="selectedMarker">
-  {{ selectedMarker.info }} at {{ selectedMarker.lat }}, {{ selectedMarker.lng }}
-</p>
-<div>
+<div id="map">
   <agm-map
     [latitude]="latitude"
     [longitude]="longitude">
@@ -13,4 +10,9 @@
       (markerClick)="selectMarker($event)">
     </agm-marker>
   </agm-map>
+</div>
+<div>
+  <p *ngIf="selectedMarker">
+    {{ selectedMarker.info }} at {{ selectedMarker.lat }}, {{ selectedMarker.lng }}
+  </p>
 </div>
