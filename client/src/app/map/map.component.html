@@ -11,8 +11,8 @@
     </agm-marker>
   </agm-map>
 </div>
-<div>
-  <p *ngIf="selectedMarker">
-    {{ selectedMarker.info }} at {{ selectedMarker.lat }}, {{ selectedMarker.lng }}
-  </p>
+<div id="infoBox" *ngIf="selectedMarker">
+  <p>Car Type: {{ selectedMarker.info.carName }}</p>
+  <p>Style: {{ selectedMarker.info.style }}</p>
+  <p>Cost: ${{ selectedMarker.info.costph }}</p>
 </div>

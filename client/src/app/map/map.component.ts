@@ -14,39 +14,53 @@ export class MapComponent implements OnInit {
 
   selectedMarker;
 
-  // something to store an InfoWindow in
-  info;
-
+  // stores the coordinates and the car info
+  // associated with each point
   markers = [
-    {lat: 51.508742, lng: -0.420000, mess: "Hello, I am a point"},
-    {lat: -0.120850, lng: 51.508742, mess: "Welcome to a point"}
+    { lat: 51.508742,
+      lng: -0.420000,
+      item: {
+        carName: "Toyota Corolla",
+        style: "hatchback",
+        costph: 24
+      }
+    },
+    { lat: -0.120850,
+      lng: 51.508742,
+      item: {
+        carName: "Honda Civic",
+        style: "sedan",
+        costph: 15
+      }
+    }
   ];
 
   // adds a marker at the coordinates
-  addMarker(lat: number, lng: number, mess: string){
-    this.markers.push({lat,lng,mess});
-  }
+  //addMarker(lat: number, lng: number, mess: string){
+  //  this.markers.push({lat,lng,mess});
+  //}
 
-  findMess(lat, lng){
-    var mess = "";
+  // since the coordinates are assumed to be unique
+  // they can be used to find the associated car
+  findItem(lat, lng){
+    var item;
     var i;
     console.log(lat + " " + lng);
     for (i = 0; i < this.markers.length; i++){
       if (lat === this.markers[i].lat && lng === this.markers[i].lng){
-        console.log(this.markers[i].mess);
-        mess = this.markers[i].mess;
+        console.log(this.markers[i].item);
+        item = this.markers[i].item;
       }
     }
-    return mess;
+    return item;
   }
 
   selectMarker(event){
     this.selectedMarker = {
       lat: event.latitude,
       lng: event.longitude,
-      info: this.findMess(event.latitude, event.longitude)
+      info: this.findItem(event.latitude, event.longitude)
     };
-    console.log(this.info);
   }
 
   constructor() { }
