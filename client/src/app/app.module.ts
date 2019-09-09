@@ -20,7 +20,7 @@ import { BookformComponent } from './bookform/bookform.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,                  
+    NavComponent,
     AboutComponent,
     ContactComponent,
     HomeComponent,
@@ -30,7 +30,7 @@ import { BookformComponent } from './bookform/bookform.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
@@ -41,7 +41,7 @@ import { BookformComponent } from './bookform/bookform.component';
     MatSidenavModule,
     FlexLayoutModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyAEEomchXOIqSpxPRsF0S0cocFaNnCPWx4'
     })
   ],
   providers: [],

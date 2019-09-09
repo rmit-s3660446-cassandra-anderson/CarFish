@@ -1,3 +1,16 @@
-<agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-</agm-map>
+<p *ngIf="selectedMarker">
+  {{ selectedMarker.info }} at {{ selectedMarker.lat }}, {{ selectedMarker.lng }}
+</p>
+<div>
+  <agm-map
+    [latitude]="latitude"
+    [longitude]="longitude">
+    <!-- Displaying multiple markers -->
+    <agm-marker
+      *ngFor="let marker of markers"
+      [latitude]="marker.lat"
+      [longitude]="marker.lng"
+      (markerClick)="selectMarker($event)">
+    </agm-marker>
+  </agm-map>
+</div>
