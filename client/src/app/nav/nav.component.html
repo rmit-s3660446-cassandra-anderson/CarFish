@@ -1,5 +1,8 @@
-<div>
-<div class="fixed-header">
+<html>
+
+
+<div> 
+<div id="toolbar" class="fixed-header">
   <mat-toolbar color="primary">
     <div fxShow="true" fxHide.gt-sm="true">
       <button mat-icon-button (click)="sidenav.toggle()">
@@ -7,11 +10,9 @@
       </button>
     </div>
 
-    <a mat-button class="companyName" routerLink="/">
+    <a mat-button class="companyName" routerLink="/" >
       <span>{{ appTitle }}</span>
     </a>
-    <!-- this is the navigation bar for pc screens -->
-    <img class="companyName" src="assets/img/carfishLogo.png">
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
       <a mat-button routerLink="/about-us">Account</a>
@@ -21,22 +22,23 @@
 
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container">
-
-
+    
+     
   <app-map></app-map>
-
-    <mat-sidenav color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
-      <!-- this is the navigation bar for mobile screens -->
-      <div id="sideBarLinks" fxLayout="column">
+  
+    
+    <mat-sidenav id="sidebar" color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
+      <div fxLayout="column">
         <a mat-button routerLink="/about-us">Account</a>
         <a mat-button routerLink="/prices">Prices</a>
         <a mat-button routerLink="/contact">About</a>
       </div>
     </mat-sidenav>
 
-  </mat-sidenav-container>
+  </mat-sidenav-container> 
+  
 
-
-
+  
   </div>
 </div>
+</html>

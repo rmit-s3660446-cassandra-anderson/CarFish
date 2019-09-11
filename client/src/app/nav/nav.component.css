@@ -17,6 +17,9 @@ div {
 .mat-sidenav-container{
   background-color: orange;
   min-height: 93vh !important;
+  position:fixed;
+  left:0px;
+  top: 70px;
 }
 
 a{
@@ -49,6 +52,7 @@ img{
 
  .mat-toolbar.mat-primary{
     background-color: #199fff;
+     height: 70px;
      position: fixed;
      top: 0;
      right: 0;
