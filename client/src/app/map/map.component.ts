@@ -32,6 +32,38 @@ export class MapComponent implements OnInit {
         style: "sedan",
         costph: 15
       }
+    },
+    { lat: 42.120850,
+      lng: 50.508742,
+      item: {
+        carName: "Hyundai Getz",
+        style: "sedan",
+        costph: 20
+      }
+    },
+    { lat: -51.414131,
+      lng: -0.4214123,
+      item: {
+        carName: "Toyota Camry",
+        style: "hatchback",
+        costph: 28
+      }
+    },
+    { lat: 60.414131,
+      lng: 60.4214123,
+      item: {
+        carName: "Range Rover",
+        style: "sedan",
+        costph: 28
+      }
+    },
+    { lat: -60.414131,
+      lng: -60.4214123,
+      item: {
+        carName: "Holden Mustang",
+        style: "sedan",
+        costph: 50
+      }
     }
   ];
 

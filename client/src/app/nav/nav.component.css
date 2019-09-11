@@ -41,7 +41,7 @@ button{
       font-size: 200%;
       text-align: center;
   }
-  
+
  .mat-toolbar.mat-primary{
     background-color: #199fff;
      height: 70px;
@@ -52,7 +52,7 @@ button{
      z-index: 9;
      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);
  }
- 
+
   .sidenav {
      padding: 20px;
      min-width: 200px;
