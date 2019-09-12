@@ -1,6 +1,15 @@
+<script type="text/javascript">
+  function toggleAbout(){
+    document.write(5 + 6);
+    if(document.getElementById('about').ngIf == false){
+      document.getElementById('about').ngIf = true;
+    }else{
+      document.getElementById('about').ngIf = false;
+    }
+    
+  }
+</script>
 <html>
-
-
 <div> 
 <div id="toolbar" class="fixed-header">
   <mat-toolbar color="primary">
@@ -15,23 +24,24 @@
     </a>
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
-      <a mat-button routerLink="/about-us">Account</a>
+      <a mat-button routerLink="/account">Account</a>
       <a mat-button routerLink="/prices">Prices</a>
-      <a mat-button routerLink="/about-us">About</a>
+      <a mat-button onclick="toggleAbout()">About</a>
     </div>
 
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container">
     
-     
-  <app-map></app-map>
+  <app-searchbar></app-searchbar>
+  <app-about id="about" *ngIf="false"></app-about>   
+  <app-map *ngIf="true"></app-map>
   
     
     <mat-sidenav id="sidebar" color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
         <a mat-button routerLink="/about-us">Account</a>
         <a mat-button routerLink="/prices">Prices</a>
-        <a mat-button routerLink="/contact">About</a>
+        <a mat-button onclick="toggleAbout()">About</a>
       </div>
     </mat-sidenav>
 
