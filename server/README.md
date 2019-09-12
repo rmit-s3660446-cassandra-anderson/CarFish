@@ -1,6 +1,10 @@
 # Carfish Backend App
 
-A basic Node.js app which uses the Express framework.  Implements a basic REST API for communication between the client-side angular app and our database.
+A basic Node.js app which uses the Express framework.  Implements a basic REST API for communication between the client-side angular app and our database.  We are using MongoDB as our database and are making use of the MongoDB Atlas hosting service to host it.
+
+## MongoDB Atlas
+
+We are using MongoDB Atlas to host our database.  This simplifies things, allowing us to to focus purely on implementation rather than database management.  To login to the console please click [here](https://cloud.mongodb.com/user#/atlas/login).  From here you can manage the database and also see what data is presently in the database.
 
 ## Run server
 
@@ -15,4 +19,4 @@ For example, making a GET request to retrieve all user information:
 
 You can also attach data as part of your request.  This request adds a new user to the database:
 
-`curl -X POST -H "Content-Type:application/json" http://localhost:9000/users -d '{"name":"John Doe"}'`
+`curl -X POST -H "Content-Type:application/json" http://localhost:9000/users -d '{"username":"John Doe", "age": 30}'`
