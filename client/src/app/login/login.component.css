@@ -1,0 +1,55 @@
+/* .login-form
+{
+    background-color:orange;
+    text-align: center;
+    vertical-align: middle;
+    padding:50px;
+  
+} */
+
+input[type=text], select {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+
+  input[type=password], select {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  
+  
+  input[type=submit] {
+    width: 20%;
+    background-color: orange;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: blue;
+  }
+  
+  div {
+    margin-left: 90px;
+    margin-right: 90px;
+    border: 100px solid white;
+    background-color: #f2f2f2;
+    /* padding: 20px; */
+    text-align: center;
+  }
