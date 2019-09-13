@@ -10,7 +10,7 @@ import { HomeComponent } from './home/home.component';
 
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatIconModule, MatCheckboxModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatInputModule } from '@angular/material';
+import { MatIconModule, MatGridListModule, MatCheckboxModule, MatButtonModule, MatCardModule, MatSidenavModule, MatToolbarModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AgmCoreModule } from '@agm/core';
@@ -34,7 +34,9 @@ import { SearchbarComponent } from './searchbar/searchbar.component';
     AppRoutingModule,
     BrowserAnimationsModule, 
     MatButtonModule,
+    MatCardModule,
     MatIconModule,
+    MatGridListModule,
     MatCheckboxModule,
     MatFormFieldModule,
     MatSelectModule,

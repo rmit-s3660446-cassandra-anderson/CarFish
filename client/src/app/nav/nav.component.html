@@ -17,7 +17,7 @@
     <span class="example-spacer"></span>
     <div fxShow="true" fxHide.lt-md="true">
         <a mat-button (click)="aboutOff(); mapOn();">Search</a>
-        <a mat-button (click)="aboutOff()">Account</a>
+        <a mat-button (click)="aboutOff(); mapOff();">Account</a>
         <a mat-button (click)="aboutOn(); mapOff();">About</a>
     </div>
 
@@ -28,13 +28,14 @@
 <!--VVVVVVVVVV This is the section where all the components should go VVVVVVVVVV-->
 <!--These should all have relevant buttons to activate the relevant section and then hide all other sections--> 
 
-    <div *ngIf="this.hideAbout">       <!-- the about section --> 
-      <app-about></app-about>
+    <div *ngIf="this.hideAbout">    <!-- the about section. Perhaps we could hide this in a drop down menu "Other" --> 
+        <app-about></app-about>
     </div>
     
     <div *ngIf="this.hideMap">         <!-- The map and search bar section--> 
       <app-searchbar></app-searchbar>  
       <app-map></app-map>
+       <br><br>  
     </div>
 <!--^^^^^^^^^^^ This is the section where all the components should go ^^^^^^^^-->    
 
@@ -42,7 +43,7 @@
     <mat-sidenav id="sidebar" color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
         <a mat-button (click)="aboutOff(); mapOn();">Search</a>
-        <a mat-button (click)="aboutOff()">Account</a>
+        <a mat-button (click)="aboutOff(); mapOff();">Account</a>
         <a mat-button (click)="aboutOn(); mapOff();">About</a>
       </div>
     </mat-sidenav>
