@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 //define our user schema
 const userSchema = new Schema({
   username: String,
-  age: Number
+  password: String
 });
 
 //if a user is deleted, delete all of their cars from the database too

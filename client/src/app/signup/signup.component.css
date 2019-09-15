@@ -17,11 +17,6 @@ input, select {
     box-sizing: border-box;
   }
 
-
-
-  
-  
-  
   input[type=submit] {
     width: 20%;
     background-color: orange;
@@ -43,5 +38,12 @@ input, select {
     border: 100px solid white;
     background-color: #f2f2f2;
     text-align: center;
+  }
+
+  .error {
+    display: block !important;
+    font-size: small;
+    font-style: italic;
+    color: red;
   }
 

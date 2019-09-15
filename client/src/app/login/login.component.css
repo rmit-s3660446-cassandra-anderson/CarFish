@@ -53,3 +53,10 @@ input[type=text], select {
     /* padding: 20px; */
     text-align: center;
   }
+
+  .error {
+    display: block !important;
+    font-size: small;
+    font-style: italic;
+    color: red;
+  }

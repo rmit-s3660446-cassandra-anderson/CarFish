@@ -20,20 +20,29 @@ router.get('/:username', (req, res) => {
   // return res.send(req.dummy.users[req.params.username]);
 });
 
-//use post for creating data
-router.post('/', (req, res) => {
-  //only proceed if a username was provided as part of the request
-  if(req.body.username != null && req.body.username != undefined) {
+//post request for user sign up
+router.post('/signup', (req, res) => {
+  req.models.users.findOne({'username': req.body.username}, function(err,user) {
+    if (err) return res.send(err);
+    if (user) return res.send({});
     req.models.users.create({
       username: req.body.username,
-      age: req.body.age
+      password: req.body.password
     }, function(err, user) {
         if (err) return res.send(err);
         return res.send(user);
     });
-  } else {
-    return res.send("Username not provided");
-  }
+  });
+});
+
+//post request for user login
+router.post('/login', (req, res) => {
+  req.models.users.findOne(
+    {'username': req.body.username, 'password': req.body.password}, function(err,user) {
+      if (err) return res.send(err);
+      if (user) return res.send(user);
+      return res.send({});
+    });
 });
 
 //use put for updating data

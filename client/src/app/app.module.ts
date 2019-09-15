@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatIconModule, MatCheckboxModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatInputModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HttpClientModule }    from '@angular/common/http';
 
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
@@ -33,6 +34,7 @@ import { SignupComponent } from './signup/signup.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
     MatButtonModule,
@@ -46,7 +48,8 @@ import { SignupComponent } from './signup/signup.component';
     FlexLayoutModule,
     AgmCoreModule.forRoot({
       apiKey: ''
-    })
+    }),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
