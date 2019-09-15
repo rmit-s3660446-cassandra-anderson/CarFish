@@ -95,6 +95,12 @@ export class MapComponent implements OnInit {
     };
   }
 
+  // to close display boxes
+  closeBox(event){
+    console.log("click!");
+    //event.style.display = "none";
+  }
+
   constructor() { }
 
   ngOnInit() {

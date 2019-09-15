@@ -2,12 +2,30 @@
   padding: 30px;
 }
 
-#infoBox {
-  margin: 0 auto;
+.bottom-text {
   padding: 5px;
   outline: 10px solid white;
   background-color: #199fff;
   width: 25%;
+}
+
+#infoBox {
+  margin: 0 auto;
+}
+
+#close {
+  float:right;
+  display:inline-block;
+  padding:2px 5px;
+  /*background:#ccc;*/
+}
+
+#close:hover {
+  float:right;
+  display:inline-block;
+  padding:2px 5px;
+  background:#ccc;
+  color:#fff;
 }
 
 /* 400px seems to be right */
