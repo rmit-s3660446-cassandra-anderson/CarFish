@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
   validateLogin(res: any): void {
     if(Object.keys(res).length > 0) {
       this.userService.setCurrentUser(res.username);
-      this.goBack();
+      this.router.navigateByUrl('');
     } else {
       this.loginFailed = true;
     }
@@ -52,9 +52,5 @@ export class LoginComponent implements OnInit {
     console.log("Reset errors");
     this.loginAttempt = false;
     this.loginFailed = false;
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 }

@@ -32,6 +32,7 @@ export class UserService {
 
   setCurrentUser(username: string): void {
     this.currentUser = username;
+    console.log(this.currentUser);
   }
 
   getCurrentUser(): string {

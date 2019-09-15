@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class SignupComponent implements OnInit {
   validateSignup(res: any): void {
     if(Object.keys(res).length > 0) {
       this.userService.setCurrentUser(res.username);
-      this.goBack();
+      this.router.navigateByUrl('');
     } else {
       this.signupFailed = true;
     }
@@ -59,9 +59,4 @@ export class SignupComponent implements OnInit {
     this.signupAttempt = false;
     this.signupFailed = false;
   }
-
-  goBack(): void {
-    this.location.back();
-  }
-
 }
