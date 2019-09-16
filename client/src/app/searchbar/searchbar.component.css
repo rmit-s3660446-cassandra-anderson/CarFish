@@ -1,0 +1,32 @@
+div {
+  height: 50px;
+  width: 30%;
+  margin: 0 auto;
+  /*border: solid black;*/
+  padding-top: 70px;
+}
+
+button, input {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);
+}
+
+input {
+  height: 50px;
+  width: 85%;
+  margin: 0 auto;
+  border: white;
+}
+input:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+button {
+  height: 50px;
+  width: 15%;
+  background-color: #199fff;
+  border-color: #199fff;
+}
+button:hover {
+  background-color: #1899F5;
+  border-color: #1899F5;
+}

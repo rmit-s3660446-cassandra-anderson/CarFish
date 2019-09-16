@@ -16,21 +16,23 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { BookformComponent } from './bookform/bookform.component';
+import { SearchBarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,                  
+    NavComponent,
     AboutComponent,
     ContactComponent,
     HomeComponent,
     MapComponent,
-    BookformComponent
+    BookformComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
