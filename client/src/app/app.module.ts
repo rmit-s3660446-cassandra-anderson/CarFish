@@ -19,11 +19,12 @@ import { MapComponent } from './map/map.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { SearchBarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,                  
+    NavComponent,
     AboutComponent,
     ContactComponent,
     HomeComponent,
@@ -31,12 +32,13 @@ import { SignupComponent } from './signup/signup.component';
     BookformComponent,
     LoginComponent,
     SignupComponent
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
@@ -46,10 +48,10 @@ import { SignupComponent } from './signup/signup.component';
     MatToolbarModule,
     MatSidenavModule,
     FlexLayoutModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
-    }),
-    HttpClientModule
+      apiKey: 'AIzaSyAEEomchXOIqSpxPRsF0S0cocFaNnCPWx4'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 <html>
 
 
-<div> 
+<div>
 <div id="toolbar" class="fixed-header">
   <mat-toolbar color="primary">
     <div fxShow="true" fxHide.gt-sm="true">
@@ -11,7 +11,7 @@
     </div>
 
     <a mat-button class="companyName" routerLink="/" >
-      <span>{{ appTitle }}</span>
+      <span>{{ appTitle }} <img src="assets/img/carfishLogo.png"></span>
     </a>
     <span class="example-spacer"></span>
 
@@ -30,11 +30,11 @@
 
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container">
-    
-     
+
+
   <app-map></app-map>
-  
-    
+
+
     <mat-sidenav id="sidebar" color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
           <a mat-button routerLink="/about-us">Account</a>
@@ -45,10 +45,10 @@
       </div>
     </mat-sidenav>
 
-  </mat-sidenav-container> 
-  
+  </mat-sidenav-container>
 
-  
+
+
   </div>
 </div>
 </html>
