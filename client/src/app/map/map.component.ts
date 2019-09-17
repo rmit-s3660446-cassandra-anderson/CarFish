@@ -68,7 +68,7 @@ export class MapComponent implements OnInit {
   ];
 
   // adds a marker at the coordinates
-  addMarker(lat: number, lng: number, item: object){
+  addMarker(lat: number, lng: number, item: any){
     this.markers.push({lat,lng,item});
   }
 
