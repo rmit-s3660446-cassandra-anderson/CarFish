@@ -12,7 +12,7 @@ const routes: Routes = [
   {path:'', component: MapComponent},
   {path:'about', component:AboutComponent},
   {path:'login', component:LoginComponent},
-  {path:'signup', component:SignupComponent},
+  {path:'signup', component:SignupComponent}
 
 
 ];
@@ -22,3 +22,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
+export const routingComponents = [AboutComponent, MapComponent, LoginComponent, SignupComponent];

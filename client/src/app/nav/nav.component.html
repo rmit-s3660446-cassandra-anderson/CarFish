@@ -17,11 +17,11 @@
 
     <div fxShow="true" fxHide.lt-md="true">
       <nav>
-   
-      <a mat-button routerLink="/about-us">Account</a>
+        
       <a mat-button routerLink="/prices">Prices</a>
-      <a mat-button routerLink="/about-us">About</a>
+      <a mat-button routerLink="/about" routerLinkActive="active">About</a>
       <a mat-button routerLink="/login">Log in</a>
+      <a mat-button routerLink="/signup">Sign up</a>
 
   </nav>
     </div>
@@ -31,17 +31,18 @@
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container">
 
-  <app-map></app-map>
-
     <mat-sidenav id="sidebar" color="orange" #sidenav fxLayout="column" mode="over"  opened="false" fxHide.gt-sm="true">
       <div fxLayout="column">
-          <a mat-button routerLink="/about-us">Account</a>
+
           <a mat-button routerLink="/prices">Prices</a>
-          <a mat-button routerLink="/about">About</a>
+          <a mat-button routerLink="/about" routerLinkActive="active">About</a>
           <a mat-button routerLink="/login">Log in</a>
+          <a mat-button routerLink="/signup">Sign up</a>
       
       </div>
     </mat-sidenav>
+    
+    <router-outlet></router-outlet>
 
   </mat-sidenav-container>
 
