@@ -23,14 +23,16 @@ password:
     <!-- <form action="/action_page.php"> -->
       <br>
       <label for="uname">Email</label><br>
-      <input type="text" id="uname" name="username" placeholder="Enter email.."><br>
+      <input type="text" id="uname" name="username" placeholder="Enter email.." [(ngModel)]="loginDetails.username" (click)="resetErrors()"><br>
+      <span style="display: none" [class.error]="loginDetails.username == '' && loginAttempt">Please enter a username</span>
     
   
       <label for="pword">Password</label><br>
-      <input type="password" id="pword" name="password" placeholder="Enter password.."><br>
-  
+      <input type="password" id="pword" name="password" placeholder="Enter password.." [(ngModel)]="loginDetails.password" (click)="resetErrors()"><br>
+      <span style="display: none" [class.error]="loginDetails.password == '' && loginAttempt">Pleaser enter a password</span>
+      <span style="display: none" [class.error]="loginFailed">No such user!</span>
     
-      <input type="submit" value="Submit"><br><br>
+      <input type="submit" value="Submit" (click)="login()"><br><br>
     <!-- </form> -->
     <hr>
     <p>New user? please <a routerLink="/signup">register here</a></p>

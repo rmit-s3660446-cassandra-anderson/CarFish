@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -6,10 +8,52 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  signupDetails = {
+    firstName: "",
+    lastName: "",
+    username: "",
+    email: "",
+    password: "",
+    ccNumber: "",
+    csv: "",
+    licenseNumber: ""
+  };
 
-  constructor() { }
+  signupAttempt = false;
+
+  signupFailed = false;
+
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  signup(): void {
+    this.signupAttempt = true;
+    if(this.validateUserInput()) {
+      this.userService.signup(this.signupDetails)
+        .subscribe(res => this.validateSignup(res));
+    }
+  }
+
+  validateUserInput(): boolean {
+    return Object.values(this.signupDetails).filter(detail => detail == "").length == 0
+  }
+
+  validateSignup(res: any): void {
+    if(Object.keys(res).length > 0) {
+      this.userService.setCurrentUser(res.username);
+      this.router.navigateByUrl('');
+    } else {
+      this.signupFailed = true;
+    }
+  }
+
+  resetErrors(): void {
+    this.signupAttempt = false;
+    this.signupFailed = false;
+  }
 }

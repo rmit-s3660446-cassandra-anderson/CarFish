@@ -2,6 +2,7 @@ const express = require('express');
 const models = require('./models');
 const routes = require('./routes');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 //first check that a database URL is set
 // if(!process.env.DATABASE_URL) {
@@ -16,6 +17,7 @@ const port = 9000;
 //to make use of request data, we need to parse it first
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 //if we want to do something before sending the request off
 //to one of our routes, do it here (i.e. authentication)
