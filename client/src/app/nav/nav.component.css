@@ -1,4 +1,4 @@
-.companyName{
+.companyName {
     font-size: 150%;
 }
 
@@ -8,6 +8,10 @@
 
 div {
     overflow: inherit;
+}
+
+#sideBarLinks {
+  padding-top: 42%;
 }
 
 .mat-sidenav-container{
@@ -27,6 +31,10 @@ a{
 button{
     font-size: 110%;
     min-width: min-content;
+}
+
+img{
+    max-height: 6vh;
 }
 
 .example-icon {

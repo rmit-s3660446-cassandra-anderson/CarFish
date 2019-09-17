@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { AgmCoreModule } from '@agm/core';
 import { MapComponent } from './map/map.component';
 import { BookformComponent } from './bookform/bookform.component';
+import { SearchBarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BookformComponent } from './bookform/bookform.component';
     ContactComponent,
     HomeComponent,
     MapComponent,
-    BookformComponent
+    BookformComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 #map {
-  padding: 30px;
+  height: 700px;
+  margin: 10%;
+  margin-top: 5%;
 }
 
 .bottom-text {
@@ -28,7 +30,6 @@
   color:#fff;
 }
 
-/* 400px seems to be right */
 agm-map {
-  height: 300px;
+  height: 90%;
 }
