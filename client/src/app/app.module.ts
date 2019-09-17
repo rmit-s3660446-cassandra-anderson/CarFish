@@ -43,7 +43,7 @@ import { SearchBarComponent } from './searchbar/searchbar.component';
     MatSidenavModule,
     FlexLayoutModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyAEEomchXOIqSpxPRsF0S0cocFaNnCPWx4'
     })
   ],
   providers: [],

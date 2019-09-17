@@ -1,8 +1,22 @@
 <!-- this is actually to get the search bar to display -->
 <app-searchbar></app-searchbar>
 
-<div>
-  <agm-map [latitude]="lat" [longitude]="lng">
-    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+<div id="map">
+  <agm-map
+    [latitude]="latitude"
+    [longitude]="longitude">
+    <!-- Displaying multiple markers -->
+    <agm-marker
+      *ngFor="let marker of markers"
+      [latitude]="marker.lat"
+      [longitude]="marker.lng"
+      (markerClick)="selectMarker($event)">
+    </agm-marker>
   </agm-map>
+</div>
+<div id="infoBox" class="bottom-text" *ngIf="selectedMarker">
+  <button id="close" (onclick)=closeBox($event)>x</button>
+  <p>Car Type: {{ selectedMarker.info.carName }}</p>
+  <p>Style: {{ selectedMarker.info.style }}</p>
+  <p>Cost: ${{ selectedMarker.info.costph }}</p>
 </div>
