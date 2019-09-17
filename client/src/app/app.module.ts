@@ -18,23 +18,25 @@ import { MapComponent } from './map/map.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { SearchBarComponent } from './searchbar/searchbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent,                  
+    NavComponent,
     AboutComponent,
     ContactComponent,
     HomeComponent,
     MapComponent,
     BookformComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
     MatCheckboxModule,
@@ -45,7 +47,7 @@ import { SignupComponent } from './signup/signup.component';
     MatSidenavModule,
     FlexLayoutModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyAEEomchXOIqSpxPRsF0S0cocFaNnCPWx4'
     })
   ],
   providers: [],
