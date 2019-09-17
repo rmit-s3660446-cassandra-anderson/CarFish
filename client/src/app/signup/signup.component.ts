@@ -32,8 +32,6 @@ export class SignupComponent implements OnInit {
   }
 
   signup(): void {
-    console.log("signup");
-    console.log(this.validateUserInput());
     this.signupAttempt = true;
     if(this.validateUserInput()) {
       this.userService.signup(this.signupDetails)
@@ -55,7 +53,6 @@ export class SignupComponent implements OnInit {
   }
 
   resetErrors(): void {
-    console.log("Reset errors");
     this.signupAttempt = false;
     this.signupFailed = false;
   }

@@ -16,8 +16,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() { }
 
   getCurrentUser(): string {
-    console.log("Get current user");
-    console.log(this.userService.getCurrentUser());
     return this.userService.getCurrentUser();
   }
 }

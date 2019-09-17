@@ -26,8 +26,6 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    console.log("login");
-    console.log(this.validateUserInput());
     this.loginAttempt = true;
     if(this.validateUserInput()) {
       this.userService.login(this.loginDetails)
@@ -49,7 +47,6 @@ export class LoginComponent implements OnInit {
   }
 
   resetErrors(): void {
-    console.log("Reset errors");
     this.loginAttempt = false;
     this.loginFailed = false;
   }
