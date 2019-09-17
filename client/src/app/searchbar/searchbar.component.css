@@ -23,6 +23,7 @@ input:hover {
 button {
   height: 50px;
   width: 15%;
+  color: white;
   background-color: #199fff;
   border-color: #199fff;
 }
