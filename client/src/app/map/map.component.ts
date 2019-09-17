@@ -68,9 +68,9 @@ export class MapComponent implements OnInit {
   ];
 
   // adds a marker at the coordinates
-  addMarker(lat: number, lng: number, item: object){
-    this.markers.push({lat,lng,item});
-  }
+  //addMarker(lat: number, lng: number, item: object){
+  //  this.markers.push({lat,lng,item});
+  //}
 
   // since the coordinates are assumed to be unique
   // they can be used to find the associated car
