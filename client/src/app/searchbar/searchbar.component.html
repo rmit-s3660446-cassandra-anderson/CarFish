@@ -1,5 +1,28 @@
-<div>
-  <!-- the text on the button is most likely -->
-  <!-- going to be replaced with an image -->
-  <input type="text"><button>Search</button>
+<div id="searchbar-component">
+  <h4><label for="search-box">Car Search</label></h4>
+
+  <div id="search-box">
+    <input #searchLocation id="search-location" (input)="search(searchLocation.value)"
+    placeholder="Search by suburb" />
+    <input type="date" id="start-date">
+    <input type="date" id="end-date">
+    <button>Search</button>
+  </div>
+
+  <ul *ngIf="searchResults" class="search-result">
+    <li *ngFor="let searchResult of searchResults" >
+      <a (click)="submitResult(searchResult.location)">
+        {{searchResult.location}}
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="centerDiv">
+  <div class="div1">
+    <app-searchresults [displayResults]="finalResults"></app-searchresults>
+  </div>
+  <div class="div2">
+    <app-map></app-map>
+  </div>
 </div>

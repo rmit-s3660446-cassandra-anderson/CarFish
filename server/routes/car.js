@@ -12,28 +12,24 @@ router.get('/', (req, res) => {
   // return res.send(Object.values(req.dummy.cars));
 });
 
-router.get('/:licensePlate', (req, res) => {
-  req.models.cars.find({'licensePlate': req.params.licensePlate}, function(err,car) {
+router.get('/:location', (req, res) => {
+  req.models.cars.find({'location': { $regex: req.params.location, $options: "i" }}, function(err,cars) {
     if (err) return res.send(err);
-    return res.send(car);
+    if (cars) return res.send(cars);
+    return res.send({});
   });
   // return res.send(req.dummy.cars[req.params.licensePlate]);
 });
 
 //use post for creating data
 router.post('/', (req, res) => {
-  //only proceed if a license plate was provided as part of the request
-  if(req.body.licensePlate != null && req.body.licensePlate != undefined) {
-    req.models.cars.create({
-      type: req.body.type,
-      licensePlate: req.body.licensePlate
-    }, function(err, car) {
-        if (err) return res.send(err);
-        return res.send(car);
-    });
-  } else {
-    return res.send("License plate not provided");
-  }
+  req.models.cars.create({
+    type: req.body.type,
+    location: req.body.location
+  }, function(err, car) {
+      if (err) return res.send(err);
+      return res.send(car);
+  });
 });
 
 //use put for updating data

@@ -14,6 +14,11 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { SearchBarComponent } from './searchbar/searchbar.component';
+import { SearchresultsComponent } from './searchresults/searchresults.component';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +27,12 @@ import { SearchBarComponent } from './searchbar/searchbar.component';
     ContactComponent,
     HomeComponent,
     routingComponents,
-    SearchBarComponent
+    MapComponent,
+    BookformComponent,
+    LoginComponent,
+    SignupComponent,
+    SearchBarComponent,
+    SearchresultsComponent
   ],
   imports: [
     BrowserModule,
