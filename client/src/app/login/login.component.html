@@ -22,8 +22,8 @@ password:
 
     <!-- <form action="/action_page.php"> -->
       <br>
-      <label for="uname">Email</label><br>
-      <input type="text" id="uname" name="username" placeholder="Enter email.." [(ngModel)]="loginDetails.username" (click)="resetErrors()"><br>
+      <label for="uname">Username</label><br>
+      <input type="text" id="uname" name="username" placeholder="Enter username.." [(ngModel)]="loginDetails.username" (click)="resetErrors()"><br>
       <span style="display: none" [class.error]="loginDetails.username == '' && loginAttempt">Please enter a username</span>
     
   
