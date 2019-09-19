@@ -2,12 +2,13 @@
   width: 80%;
   height: 50px;
   margin: 0 auto;
+  padding-top : 70px;
+  padding-bottom: 70px;
 }
 
 #search-location {
   width: 50%;
   height: 50px;
-  border: white;
 }
 
 #start-date, #end-date {
@@ -69,10 +70,9 @@ ul.search-result {
   margin-top: 0;
   padding-left: 0;
   height:70px;
-  width:80%;
+  width:50%;
   overflow:hidden;
   overflow-y:scroll;
-  margin: 0 auto;
 }
 
 .centerDiv

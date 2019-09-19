@@ -25,7 +25,10 @@ router.get('/:location', (req, res) => {
 router.post('/', (req, res) => {
   req.models.cars.create({
     type: req.body.type,
-    location: req.body.location
+    location: req.body.location,
+    startDate: req.body.startDate,
+    endDate: req.body.endDate,
+    maxLength: req.body.maxLength
   }, function(err, car) {
       if (err) return res.send(err);
       return res.send(car);

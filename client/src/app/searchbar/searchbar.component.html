@@ -4,18 +4,18 @@
   <div id="search-box">
     <input #searchLocation id="search-location" (input)="search(searchLocation.value)"
     placeholder="Search by suburb" />
-    <input type="date" id="start-date">
-    <input type="date" id="end-date">
-    <button>Search</button>
-  </div>
+    <input #startDate type="date" id="start-date" required>
+    <input #endDate type="date" id="end-date" required>
+    <button (click)="displayResults(startDate.value, endDate.value)">Search</button>
 
-  <ul *ngIf="searchResults" class="search-result">
-    <li *ngFor="let searchResult of searchResults" >
-      <a (click)="submitResult(searchResult.location)">
-        {{searchResult.location}}
-      </a>
-    </li>
-  </ul>
+    <ul *ngIf="matchingLocations.length > 0" class="search-result">
+      <li *ngFor="let matchingLocation of matchingLocations" >
+        <a (click)="selectLocation(matchingLocation)">
+          {{matchingLocation}}
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <div class="centerDiv">
