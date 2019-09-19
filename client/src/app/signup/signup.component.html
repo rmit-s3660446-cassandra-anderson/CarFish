@@ -5,38 +5,38 @@
 <!-- 
 <div class="signup-form"> -->
 
-<h5>Personal information</h5>
-first name:<br>
-<input class="s-input" type='text' name='firstname' placeholder="Enter name.."required (click)="resetErrors()" [(ngModel)]="signupDetails.firstName"><br>
+<h5>Personal Information</h5>
+First Name:<br>
+<input class="s-input" type='text' name='firstname' placeholder="Enter name.." (click)="resetErrors()" [(ngModel)]="signupDetails.firstName"><br>
 <span style="display: none" [class.error]="signupDetails.firstName == '' && signupAttempt">Please enter a firstname</span>
 
-last name:<br>
-<input class="s-input" type='text' name='lastname' placeholder="Enter name.."required (click)="resetErrors()" [(ngModel)]="signupDetails.lastName"><br>
+Last Name:<br>
+<input class="s-input" type='text' name='lastname' placeholder="Enter name.." (click)="resetErrors()" [(ngModel)]="signupDetails.lastName"><br>
 <span style="display: none" [class.error]="signupDetails.lastName == '' && signupAttempt">Please enter a lastname</span>
 
-username:<br>
-<input class="s-input" type='text' name='username' placeholder="Enter username.."required (click)="resetErrors()" [(ngModel)]="signupDetails.username"><br>
+Username:<br>
+<input class="s-input" type='text' name='username' placeholder="Enter username.." (click)="resetErrors()" [(ngModel)]="signupDetails.username"><br>
 <span style="display: none" [class.error]="signupDetails.username == '' && signupAttempt">Please enter a username</span>
 
-email:<br>
-<input class="s-input"type='email' name='e-mail' placeholder="Enter email.."required (click)="resetErrors()" [(ngModel)]="signupDetails.email"><br>
+Email:<br>
+<input class="s-input"type='email' name='e-mail' placeholder="Enter email.." (click)="resetErrors()" [(ngModel)]="signupDetails.email"><br>
 <span style="display: none" [class.error]="signupDetails.email == '' && signupAttempt">Please enter an email</span>
 
-password:<br>
-<input class="s-input" type='password' name='pwd' placeholder="Enter password.." required (click)="resetErrors()" [(ngModel)]="signupDetails.password"><br>
+Password:<br>
+<input class="s-input" type='password' name='pwd' placeholder="Enter password.."  (click)="resetErrors()" [(ngModel)]="signupDetails.password"><br>
 <span style="display: none" [class.error]="signupDetails.password == '' && signupAttempt">Please enter a password</span>
 
 <hr>
 
 <br>
 
-<h5>Bank details</h5>
-Card number:<br>
-<input class="s-input" type='text' name='name' placeholder="Enter card number.."required (click)="resetErrors()" [(ngModel)]="signupDetails.ccNumber"><br>
+<h5>Bank Details</h5>
+Card Number:<br>
+<input class="s-input" type='text' name='name' placeholder="Enter card number.." (click)="resetErrors()" [(ngModel)]="signupDetails.ccNumber"><br>
 <span style="display: none" [class.error]="signupDetails.ccNumber == '' && signupAttempt">Please enter a card number</span>
 
 CSV:<br>
-<input class="s-input" type='text' name='name' placeholder="Enter CSV.."required (click)="resetErrors()" [(ngModel)]="signupDetails.csv"><br>
+<input class="s-input" type='text' name='name' placeholder="Enter CSV.." (click)="resetErrors()" [(ngModel)]="signupDetails.csv"><br>
 <span style="display: none" [class.error]="signupDetails.csv == '' && signupAttempt">Please enter a CSV</span>
 <!-- expired date:<br>
 <input class="s-input" type='text' name='name' required><br> -->
@@ -44,9 +44,9 @@ CSV:<br>
 
 <br>
 
-<h5>Driving license</h5>
-License number:<br>
-<input class="s-input" type='text' name='name' placeholder="Enter license number.."required (click)="resetErrors()" [(ngModel)]="signupDetails.licenseNumber"><br>
+<h5>Driving License</h5>
+License Number:<br>
+<input class="s-input" type='text' name='name' placeholder="Enter license number.." (click)="resetErrors()" [(ngModel)]="signupDetails.licenseNumber"><br>
 <span style="display: none" [class.error]="signupDetails.licenseNumber == '' && signupAttempt">Please enter a license number</span>
 
 Upload your driving license:<br>

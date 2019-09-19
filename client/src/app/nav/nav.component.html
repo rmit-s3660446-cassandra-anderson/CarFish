@@ -15,18 +15,27 @@
     </a>
     <span class="example-spacer"></span>
 
-    <div fxShow="true" fxHide.lt-md="true">
-      <nav>
-        
-      <a mat-button routerLink="/prices">Prices</a>
-      <a mat-button routerLink="/about" routerLinkActive="active">About</a>
-      <a mat-button routerLink="/login">Log in</a>
-      <a mat-button routerLink="/signup">Sign up</a>
-
-  </nav>
+    <div *ngIf="getCurrentUser(); else loggedOut">
+      <div fxShow="true" fxHide.lt-md="true">
+        <nav>
+          <a mat-button routerLink="/prices">Prices</a>
+          <a mat-button routerLink="/about" routerLinkActive="active">About</a>
+          <a mat-button (click)="logout()">Log Out</a>
+          <a mat-button >Welcome, {{ getCurrentUser() }}</a>
+        </nav>
+      </div>
     </div>
 
-
+    <ng-template #loggedOut>
+      <div fxShow="true" fxHide.lt-md="true">
+        <nav>
+          <a mat-button routerLink="/prices">Prices</a>
+          <a mat-button routerLink="/about" routerLinkActive="active">About</a>
+          <a mat-button routerLink="/login">Log in</a>
+          <a mat-button routerLink="/signup">Sign up</a>
+        </nav>
+      </div>
+    </ng-template>
 
   </mat-toolbar>
   <mat-sidenav-container fxFlexFill class="example-container">
@@ -42,8 +51,6 @@
       </div>
     </mat-sidenav>
     
-
-
   </mat-sidenav-container>
 
 
