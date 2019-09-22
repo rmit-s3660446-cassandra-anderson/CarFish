@@ -8,7 +8,7 @@ We are using MongoDB Atlas to host our database.  This simplifies things, allowi
 
 ## Run server
 
-Run `npm run server` to start the server. The app will be listening on port `9000` (this can be configured if wanted). The app will automatically reload if you change any of the source files.
+Run `node server.js` to start the server. The app will be listening on port `9000` (this can be configured if wanted).
 
 ## Test
 You can use `cURL` (a command line tool for transferring data using various protocols) to make HTTP requests to the server as a means of testing.  If you don't have it installed, you can find a good guide for how to do that [here](https://develop.zendesk.com/hc/en-us/articles/360001068567-Installing-and-using-cURL#install).

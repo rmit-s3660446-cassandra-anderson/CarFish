@@ -77,7 +77,7 @@ export class SearchBarComponent implements OnInit {
 
   filterResultsByDate(startDate: number, endDate: number): void {
     this.filteredResults = this.filteredResults.filter((result) => {
-      return (startDate >= Date.parse(result.startDate) && endDate <= Date.parse(result.endDate));
+      return (startDate <= Date.parse(result.startDate) && endDate >= Date.parse(result.endDate));
     });
   }
 
