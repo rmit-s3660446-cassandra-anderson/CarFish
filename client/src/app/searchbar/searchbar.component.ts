@@ -1,7 +1,8 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { CarService } from '../car.service'
+import { CarService } from '../car.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-searchbar',
@@ -11,15 +12,18 @@ import { CarService } from '../car.service'
 export class SearchBarComponent implements OnInit {
   @ViewChild('searchLocation', {static: false}) searchLocation: ElementRef;
   searchResults: any;
-  matchingLocations = []
+  matchingLocations = [];
   private searchInput = new Subject<string>();
-  finalResults = []
+  filteredResults = [];
+  resultsError: string;
+  datePickerConfig: Partial<BsDatepickerConfig>;
 
   constructor(
     private carService: CarService
   ) { }
 
   ngOnInit(): void {
+    this.datePickerConfig = { containerClass: 'theme-dark-blue' };
     this.searchInput.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
@@ -45,28 +49,46 @@ export class SearchBarComponent implements OnInit {
     this.searchInput.next(input);
   }
 
-  displayResults(startDate: string, endDate: string): void {
-    let userStartDate = Date.parse(startDate);
-    let userEndDate = Date.parse(endDate);
-    // if the end date is less than the start, return
-    if(userEndDate < userStartDate) {
-      console.log("End less than start");
+  validateSearch(dateRange: string, location: string): void {
+    this.resetValues();
+    this.filterResultsByLocation(location);
+
+    if (!this.searchResults || this.filteredResults.length == 0) {
+      this.resultsError = "No cars in that location! Please try another."
+      return;
+    } else if(dateRange == "") {
       return;
     }
-    this.searchResults.forEach((result) => {
-      console.log(result);
-      console.log(Date.parse(result.startDate));
-      console.log(Date.parse(result.endDate));
-      if(userStartDate >= Date.parse(result.startDate) &&
-      userEndDate <= Date.parse(result.endDate)) {
-        console.log(result);
-        this.finalResults.push(result);
-      }
+
+    let startDate = Date.parse(dateRange.split(" ")[0]);
+    let endDate = Date.parse(dateRange.split(" ")[2]);
+    this.filterResultsByDate(startDate, endDate);
+
+    if (this.filteredResults.length == 0) {
+      this.resultsError = "No cars available in that date range!  Please try another."
+    }
+  }
+
+  filterResultsByLocation(location: string): void {
+    if(this.searchResults) {
+      this.filteredResults = this.searchResults.filter((res) => res.location == location);
+    }
+  }
+
+  filterResultsByDate(startDate: number, endDate: number): void {
+    this.filteredResults = this.filteredResults.filter((result) => {
+      return (startDate >= Date.parse(result.startDate) && endDate <= Date.parse(result.endDate));
     });
   }
 
   selectLocation(location: string): void {
     this.matchingLocations = [];
     this.searchLocation.nativeElement.value = location;
+  }
+
+  resetValues(): void {
+    this.filteredResults = [];
+    this.resultsError = "";
+    this.matchingLocations = [];
   }
 }

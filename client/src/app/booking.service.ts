@@ -6,9 +6,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class CarService {
-  private carURL = 'http://localhost:9000/cars';
-  selectedCar: any;
+export class BookingService {
+  private bookingURL = 'http://localhost:9000/bookings';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -18,16 +17,7 @@ export class CarService {
     private http: HttpClient
   ) { }
 
-  carSearch(input: string): Observable<any> {
-    console.log("Car service search");
-    return this.http.get<any>(`${this.carURL}/${input}`)
-  }
-
-  setSelectedCar(selectedCar: any): void {
-    this.selectedCar = selectedCar;
-  }
-
-  getSelectedCar(): any {
-    return this.selectedCar;
+  getUnavailableDates(car: string): Observable<any> {
+    return this.http.get<any>(`${this.bookingURL}/dates/${car}`);
   }
 }
