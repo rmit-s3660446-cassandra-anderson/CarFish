@@ -20,6 +20,7 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MapComponent } from './map/map.component';
+import { UserhistoryComponent } from './userhistory/userhistory.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MapComponent } from './map/map.component';
     LoginComponent,
     SignupComponent,
     SearchBarComponent,
-    SearchresultsComponent
+    SearchresultsComponent,
+    UserhistoryComponent
   ],
   imports: [
     BrowserModule,
