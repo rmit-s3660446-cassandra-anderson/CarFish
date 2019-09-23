@@ -1,0 +1,10 @@
+<div *ngIf="displayResults">
+  <li *ngFor="let result of displayResults" >
+    {{result.location}}
+    {{result.type}}
+    <button><a (click)="setSelectedCar(result)" routerLink="/booking">Book</a></button>
+  </li>
+</div>
+<div *ngIf="resultsError">
+  <span>{{ resultsError }}</span>
+</div>

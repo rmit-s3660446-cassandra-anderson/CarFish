@@ -6,6 +6,7 @@ import { MatIconModule, MatCardModule, MatCheckboxModule, MatButtonModule, MatSi
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,11 @@ import { ContactComponent } from './contact/contact.component';
 import { HomeComponent } from './home/home.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { SearchBarComponent } from './searchbar/searchbar.component';
+import { SearchresultsComponent } from './searchresults/searchresults.component';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +28,12 @@ import { SearchBarComponent } from './searchbar/searchbar.component';
     ContactComponent,
     HomeComponent,
     routingComponents,
-    SearchBarComponent
+    MapComponent,
+    BookformComponent,
+    LoginComponent,
+    SignupComponent,
+    SearchBarComponent,
+    SearchresultsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +53,8 @@ import { SearchBarComponent } from './searchbar/searchbar.component';
     HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAEEomchXOIqSpxPRsF0S0cocFaNnCPWx4'
-    })
+    }),
+    BsDatepickerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

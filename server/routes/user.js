@@ -3,7 +3,7 @@ const uuidv4 = require('uuid/v4');
 
 const router = Router();
 
-//use get for reading data
+//get all users from the database
 router.get('/', (req, res) => {
   req.models.users.find({}, function(err, users) {
     if (err) return res.send(err);
@@ -12,6 +12,7 @@ router.get('/', (req, res) => {
   // return res.send(Object.values(req.dummy.users));
 });
 
+//find a user by username
 router.get('/:username', (req, res) => {
   req.models.users.find({'username': req.params.username}, function(err,user) {
     if (err) return res.send(err);
@@ -20,7 +21,7 @@ router.get('/:username', (req, res) => {
   // return res.send(req.dummy.users[req.params.username]);
 });
 
-//post request for user sign up
+//create a user
 router.post('/signup', (req, res) => {
   req.models.users.findOne({'username': req.body.username}, function(err,user) {
     if (err) return res.send(err);
@@ -35,7 +36,7 @@ router.post('/signup', (req, res) => {
   });
 });
 
-//post request for user login
+//check if a user exists
 router.post('/login', (req, res) => {
   req.models.users.findOne(
     {'username': req.body.username, 'password': req.body.password}, function(err,user) {
@@ -45,7 +46,7 @@ router.post('/login', (req, res) => {
     });
 });
 
-//use put for updating data
+//update user details
 router.put('/:username', (req, res) => {
   req.models.users.find({'username': req.params.username}, function(err,user) {
     if (err) return res.send(err);
@@ -55,7 +56,7 @@ router.put('/:username', (req, res) => {
   //return res.send(req.dummy.users[req.params.userId]);
 });
 
-//use delete for deleting data
+//delete user from database
 router.delete('/:username', (req, res) => {
   req.models.users.findOne({'username': req.params.username}, function(err,user) {
     if (err) return res.send(err);

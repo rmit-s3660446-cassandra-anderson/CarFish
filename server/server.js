@@ -13,6 +13,7 @@ const cors = require('cors');
 const app = express();
 //configure this to whatever port you would like to listen on
 const port = 9000;
+const cleanAndSeedDB = false;
 
 //to make use of request data, we need to parse it first
 app.use(express.json());
@@ -30,9 +31,18 @@ app.use((req, res, next) => {
 //our main routes
 app.use('/users', routes.user);
 app.use('/cars', routes.car);
+app.use('/bookings', routes.booking);
 
 //connect to the database and start the server
-mongoose.connect("mongodb+srv://carfish_admin:csit-carfish-2019@cluster0-56z8j.mongodb.net/test?retryWrites=true&w=majority").then(() => {
+mongoose.connect("mongodb+srv://carfish_admin:csit-carfish-2019@cluster0-56z8j.mongodb.net/test?retryWrites=true&w=majority").then(async () => {
+  if(cleanAndSeedDB) {
+    await Promise.all([
+      models.users.deleteMany({}),
+      models.cars.deleteMany({}),
+      models.bookings.deleteMany({}),
+    ]);
+    models.seedDB();
+  }
   app.listen(port, () => {
     console.log("Express app is listening on port " + port);
   });

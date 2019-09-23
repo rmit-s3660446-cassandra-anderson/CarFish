@@ -1,33 +1,98 @@
-div {
-  height: 50px;
-  width: 30%;
+#search-box {
+  width: 80%;
+  height: 120px;
   margin: 0 auto;
-  /*border: solid black;*/
-  padding-top: 70px;
+  padding-top : 70px;
+  padding-bottom: 120px;
+}
+
+#search-location {
+  width: 60%;
+  height: 50px;
+}
+
+#date-range {
+  width: 30%;
+  height: 50px;
 }
 
 button, input {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.24);
 }
 
-input {
-  height: 50px;
-  width: 85%;
-  margin: 0 auto;
-  border: white;
-}
 input:hover {
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 button {
   height: 50px;
-  width: 15%;
+  width: 10%;
   color: white;
   background-color: #199fff;
   border-color: #199fff;
 }
+
 button:hover {
   background-color: #1899F5;
   border-color: #1899F5;
+}
+
+.search-result li {
+  border-bottom: 1px solid gray;
+  border-left: 1px solid gray;
+  border-right: 1px solid gray;
+  width: 100%;
+/*  height: 16px;*/
+  padding: 5px;
+  background-color: white;
+  cursor: pointer;
+  list-style-type: none;
+}
+
+.search-result li:hover {
+  background-color: #607D8B;
+}
+
+.search-result li a {
+  color: #888;
+  display: block;
+  text-decoration: none;
+}
+
+.search-result li a:hover {
+  color: white;
+}
+.search-result li a:active {
+  color: white;
+}
+
+ul.search-result {
+  margin-top: 0;
+  padding-left: 0;
+  height:70px;
+  width:60%;
+  overflow:hidden;
+  overflow-y:scroll;
+}
+
+.centerDiv
+{
+  width: 80%;
+  height:700px;
+  margin: 0 auto;
+  background-color:#FFA500 ;
+}
+.div1
+{
+  width: 50%;
+  height:700px;
+  background-color: #DCDCDC;
+  float:left;
+}
+.div2
+{
+  width: 50%;
+  height:700px;
+  background-color: #DCDCDC;
+  float:left;
 }

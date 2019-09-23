@@ -6,3 +6,22 @@
 .example-container > * {
   width: 100%;
 }
+
+#booking-component {
+  width: 80%;
+  margin: 0 auto;
+  padding-top : 70px;
+  padding-bottom: 120px;
+}
+
+#date-picker {
+  width: 40%;
+  margin: 0 auto;
+}
+
+.error {
+  display: block !important;
+  font-size: small;
+  font-style: italic;
+  color: red;
+}
