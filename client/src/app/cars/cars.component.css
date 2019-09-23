@@ -1,0 +1,54 @@
+.imgContainer{
+  
+    display: block;
+     border-style: solid;
+     border-color: black;
+     background-color: white;
+     margin-bottom: 1px;
+    
+   
+}
+
+img {
+    width: 350px;
+    height: 150px;
+    /* padding-left: 65px;
+    padding-right: 65px; */
+    padding-left: 65px;
+    padding-right: 100px;
+    padding-top: 10px;
+    max-width: 100%;
+    /* display: inline; */
+    float: left;
+    
+   
+}
+
+div {
+   
+    margin-left: 90px;
+    margin-right: 90px;
+    background-color: #f2f2f2;
+   
+    
+  
+  }
+  
+  
+
+  Button{
+      float: right;
+      background-color: orange;
+      margin-bottom: 70px;
+      
+
+  }
+
+  h1{
+      margin-left: 90px;
+  }
+
+  select{
+    margin-left: 90px;
+    width: 300px;
+  }

@@ -7,13 +7,15 @@ import { SignupComponent } from './signup/signup.component';
 import { MapComponent } from './map/map.component';
 import { SearchBarComponent } from './searchbar/searchbar.component';
 import { BookformComponent } from './bookform/bookform.component';
+import { CarsComponent } from './cars/cars.component';
 
 const routes: Routes = [
   {path: '', component: SearchBarComponent},
   {path: 'about', component: AboutComponent},
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'booking', component: BookformComponent}
+  {path: 'booking', component: BookformComponent},
+  {path: 'cars', component: CarsComponent}
 ];
 
 @NgModule({
