@@ -2,11 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { MatIconModule, MatCardModule, MatCheckboxModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatInputModule } from '@angular/material';
+import { MatIconModule, MatCardModule, MatCheckboxModule, MatGridListModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatInputModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
+import { GravatarModule } from  'ngx-gravatar';
+import {WebStorageModule, LocalStorageService} from "ngx-store";
 
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,12 +23,15 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { MapComponent } from './map/map.component';
+import { AccountComponent } from './account/account.component';
+import { AddcarformComponent } from './addcarform/addcarform.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     ContactComponent,
+    AboutComponent,
     HomeComponent,
     routingComponents,
     MapComponent,
@@ -33,16 +39,22 @@ import { MapComponent } from './map/map.component';
     LoginComponent,
     SignupComponent,
     SearchBarComponent,
-    SearchresultsComponent
+    SearchresultsComponent,
+    AccountComponent,
+    AddcarformComponent
   ],
   imports: [
+    WebStorageModule,
+    GravatarModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    MatInputModule,
     MatIconModule,
     MatCheckboxModule,
+    MatGridListModule,
     MatFormFieldModule,
     MatSelectModule,
     MatCardModule,
@@ -56,7 +68,7 @@ import { MapComponent } from './map/map.component';
     }),
     BsDatepickerModule.forRoot()
   ],
-  providers: [],
+  providers: [LocalStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

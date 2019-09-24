@@ -21,7 +21,7 @@
           <a mat-button routerLink="/prices">Prices</a>
           <a mat-button routerLink="/about" routerLinkActive="active">About</a>
           <a mat-button (click)="logout()">Log Out</a>
-          <a mat-button >Welcome, {{ getCurrentUser() }}</a>
+          <a mat-button routerLink="/account">{{ getCurrentUser() }}</a>
         </nav>
       </div>
     </div>

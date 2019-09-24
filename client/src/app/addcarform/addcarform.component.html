@@ -1,0 +1,39 @@
+<mat-card class="contentbody" style=" background-color: #199fff; color:white;">Register A Car To Your Account</mat-card>
+<mat-card>
+        <div>
+            <h5>Personal Information</h5>
+            Vehicle Type:<br>
+            <input class="s-input" type='type' name='type' placeholder="Enter type.." (click)="resetErrors()" [(ngModel)]="signupDetails.type"><br>
+            <span style="display: none" [class.error]="signupDetails.type == '' && signupAttempt">Please enter a type</span>
+            
+            Vehicle Licence Plate:<br>
+            <input class="s-input" type='text' name='licence' placeholder="Enter licence plate.." (click)="resetErrors()" [(ngModel)]="signupDetails.licence"><br>
+            <span style="display: none" [class.error]="signupDetails.licence == '' && signupAttempt">Please enter a licence plate</span>
+            
+            Location of Vehicle (This is where the customer will pickup and drop off the vehicle):<br>
+            <input class="s-input" type='text' name='location' placeholder="Enter location.." (click)="resetErrors()" [(ngModel)]="signupDetails.location"><br>
+            <span style="display: none" [class.error]="signupDetails.location == '' && signupAttempt">Please enter a location</span>
+            
+            Start date(When the vehicle may be rented):<br>
+            <input class="s-input"type='startDate' name='startDate' placeholder="Enter start date.." (click)="resetErrors()" [(ngModel)]="signupDetails.startDate"><br>
+            <span style="display: none" [class.error]="signupDetails.startDate == '' && signupAttempt">Please enter an start date</span>
+
+            End date(When the vehicle finishes its renting listing):<br>
+            <input class="s-input"type='endDate' name='endDate' placeholder="Enter end date.." (click)="resetErrors()" [(ngModel)]="signupDetails.endDate"><br>
+            <span style="display: none" [class.error]="signupDetails.endDate == '' && signupAttempt">Please enter an end date</span>
+
+            Max length of a single renting:<br>
+            <input class="s-input"type='maxLength' name='maxLength' placeholder="Enter max length.." (click)="resetErrors()" [(ngModel)]="signupDetails.maxLength"><br>
+            <span style="display: none" [class.error]="signupDetails.maxLength == '' && signupAttempt">Please enter an Max length</span>
+            
+            Owner's Notes:<br>
+            <input class="s-input" type='userNotes' name='pwd' placeholder="Enter owner's notes.."  (click)="resetErrors()" [(ngModel)]="signupDetails.userNotes"><br>
+            <span style="display: none" [class.error]="signupDetails.userNotes == '' && signupAttempt">Please enter a owner's notes</span>
+
+            <br>
+            <fieldset>
+                <span style="display: none" [class.error]="signupFailed">That licence already exists!</span>
+                <input type='submit' name='name' required (click)="signup()"><br><br>
+            </fieldset>
+        </div>
+</mat-card>
