@@ -11,6 +11,10 @@ import { CookieStorage, LocalStorage, SharedStorage, SessionStorage } from 'ngx-
 export class LoginComponent implements OnInit {
 
   @SharedStorage() loggedUsername: String = '';
+  @SharedStorage() loggedFirst: String = '';
+  @SharedStorage() loggedLast: String = '';
+  @SharedStorage() loggedEmail: String = '';
+
 
   loginDetails = {
     username: "",
