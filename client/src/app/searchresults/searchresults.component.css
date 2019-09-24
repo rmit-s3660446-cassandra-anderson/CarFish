@@ -1,0 +1,50 @@
+.result {
+    border: 1px solid #CEEFFF;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    background: #fff;
+    padding: 6px;
+}
+
+.result-image {
+    background-color: #EBF8FE;
+    display: block;
+    min-height: 238px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #CEEFFF;
+    padding-top: 40px;
+}
+
+.result-details {
+    border-bottom: 1px solid #dfe5e9;
+    padding-bottom: 17px;
+    padding-left: 16px;
+    padding-top: 16px;
+    position: relative;
+    background: #fff
+}
+
+.result-details h5 span {
+    color: #9aa7af;
+    display: block;
+    font-size: 13px
+}
+
+.description {
+    font-size: 12.5px;
+    line-height: 20px;
+    padding: 10px 14px 16px 19px;
+    background: #fff
+}
+
+.name {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.price-container {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 300;
+}

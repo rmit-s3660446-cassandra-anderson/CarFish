@@ -1,9 +1,35 @@
 <div *ngIf="displayResults">
-  <li *ngFor="let result of displayResults" >
-    {{result.location}}
-    {{result.type}}
-    <button><a (click)="setSelectedCar(result)" routerLink="/booking">Book</a></button>
-  </li>
+  <div *ngFor="let result of displayResults">
+    <div class="container">
+      <div class="result">
+        <div class="row">
+            <div class="col-sm-5">
+              <div class="result-image">
+                <img class="img-responsive">
+              </div>
+            </div>
+            <div class="col-sm-7">
+            <div class="result-details">
+                <h5 class="name">
+                  {{result.type}}
+                  <span>{{result.location}}</span>
+                </h5>
+                <p class="price-container">
+                  <span>$100</span>
+                </p>
+                <span class="tag1"></span>
+            </div>
+            <div class="description">
+              <p>Put description here</p>
+            </div>
+            <div class="product-info">
+              <a class="btn btn-danger" (click)="setSelectedCar(result)" routerLink="/booking">Book</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div *ngIf="resultsError">
   <span>{{ resultsError }}</span>
