@@ -30,4 +30,9 @@ export class CarService {
   getSelectedCar(): any {
     return this.selectedCar;
   }
+
+  register(registerDetails: Object): Observable<any> {
+    const url = `${this.carURL}/create`;
+    return this.http.post<any>(url, registerDetails, this.httpOptions);
+  }
 }

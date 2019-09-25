@@ -9,14 +9,13 @@ import { Router } from '@angular/router';
 })
 export class AddcarformComponent implements OnInit {
   signupDetails = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    email: "",
-    password: "",
-    ccNumber: "",
-    csv: "",
-    licenseNumber: ""
+    type: "",
+    licence: "",
+    location: "",
+    startDate: "",
+    endDate: "",
+    maxLength: "",
+    userNotes: ""
   };
 
   signupAttempt = false;
@@ -31,10 +30,11 @@ export class AddcarformComponent implements OnInit {
   ngOnInit() {
   }
 
-  signup(): void {
+  register(): void {
     this.signupAttempt = true;
     if(this.validateUserInput()) {
-
+      this.carService.register(this.signupDetails)
+        .subscribe(res => this.validateSignup(res));
     }
   }
 
