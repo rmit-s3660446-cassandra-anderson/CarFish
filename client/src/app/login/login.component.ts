@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
+import { CookieStorage, LocalStorage, SharedStorage, SessionStorage } from 'ngx-store';
 
 @Component({
   selector: 'app-login',
@@ -8,6 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
+  @SharedStorage() loggedUsername: String = '';
+  @SharedStorage() loggedFirst: String = '';
+  @SharedStorage() loggedLast: String = '';
+  @SharedStorage() loggedEmail: String = '';
+
+
   loginDetails = {
     username: "",
     password: ""
@@ -30,6 +38,7 @@ export class LoginComponent implements OnInit {
     if(this.validateUserInput()) {
       this.userService.login(this.loginDetails)
         .subscribe(res => this.validateLogin(res));
+        this.loggedUsername = this.loginDetails.username;
     }
   }
 

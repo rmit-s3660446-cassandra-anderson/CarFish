@@ -8,6 +8,7 @@ import { MapComponent } from './map/map.component';
 import { SearchBarComponent } from './searchbar/searchbar.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { CarsComponent } from './cars/cars.component';
+import { AccountComponent } from './account/account.component';
 
 const routes: Routes = [
   {path: '', component: SearchBarComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'booking', component: BookformComponent},
-  {path: 'cars', component: CarsComponent}
+  {path: 'cars', component: CarsComponent},
+  {path: 'account', component: AccountComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,23 @@
+<div class="wrapper" *ngIf="true" >
+    <!-- this section handles the sidebar navigation on the account page -->
+    <div class="sidebar" style="background-color: rgba(0, 0, 0, 0.0); margin-left: 0px; margin-right: 0px;">
+        <mat-card class="header">
+                <img ngxGravatar [email]="getGravatar()"> <h1>{{ getCurrentUser() }}</h1>
+        </mat-card>
+        <mat-card class="sidebarbody">
+            <nav>
+                <!-- these buttons hide the appropriate divs -->
+                <a mat-button (click)="showAccount()">Account</a><br>
+                <a mat-button (click)="showRegisterCar()">Register a Car</a><br>
+                <a mat-button (click)="showActivityHistory()">Activity History</a><br>
+            </nav>
+        </mat-card>
+    </div>
+    <!-- This is the section for the content to be swapped in and out -->
+    <div class="main" style="background-color: rgba(0, 0, 0, 0.0); margin-left: 0px; margin-right: 0px;">
+        <mat-card class="contentbody" *ngIf="accountPage" style="background-color: #199fff; color:white;">Account Details</mat-card>
+        <!-- we place the different app components here and hide them when a button is pressed -->
+        <app-addcarform *ngIf="registerCar"></app-addcarform>
+        <mat-card class="contentbody" *ngIf="activityHistory" style="background-color: #199fff; color:white;">Activity History</mat-card>
+    </div>
+</div>
