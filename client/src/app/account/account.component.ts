@@ -8,18 +8,17 @@ import { CookieStorage, LocalStorage, SharedStorage, SessionStorage } from 'ngx-
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-
-  @SharedStorage('loggedUsername') loggedUsername: string = '';
-
   public accountPage = true;
   public registerCar = false;
   public activityHistory = false;
-  private gravatar = this.loggedUsername + "@carfish.com";
-  private userService: UserService;
+  private gravatar: string;
 
-  constructor() { }
+  constructor(
+    private userService: UserService
+  ) { }
 
   ngOnInit() {
+    this.gravatar = this.getCurrentUser().username + "@carfish.com"
   }
 
   public showAccount(){
@@ -38,12 +37,10 @@ export class AccountComponent implements OnInit {
     this.activityHistory = true;
   }
 
-  getCurrentUser(): string {
-    return this.loggedUsername;
+  getCurrentUser(): any {
+    return this.userService.getCurrentUser();
   }
   getGravatar(): string {
     return this.gravatar;
   }
-
-
 }

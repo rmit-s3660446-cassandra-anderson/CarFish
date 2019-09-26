@@ -9,13 +9,6 @@ import { CookieStorage, LocalStorage, SharedStorage, SessionStorage } from 'ngx-
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  @SharedStorage() loggedUsername: String = '';
-  @SharedStorage() loggedFirst: String = '';
-  @SharedStorage() loggedLast: String = '';
-  @SharedStorage() loggedEmail: String = '';
-
-
   loginDetails = {
     username: "",
     password: ""
@@ -38,7 +31,6 @@ export class LoginComponent implements OnInit {
     if(this.validateUserInput()) {
       this.userService.login(this.loginDetails)
         .subscribe(res => this.validateLogin(res));
-        this.loggedUsername = this.loginDetails.username;
     }
   }
 

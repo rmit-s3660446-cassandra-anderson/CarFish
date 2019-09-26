@@ -16,7 +16,7 @@
 <div class="container-fluid" id="booking-component">
   <div class="row">
     <div class="col-sm-7">
-      <h2>{{selectedCar.type}}</h2>
+      <h2>{{selectedCar.type.brand}} {{selectedCar.type.model}}</h2>
       <p>Available from : {{selectedCar.startDate.split('T')[0]}}</p>
       <p>Available until : {{selectedCar.endDate.split('T')[0]}}</p>
     </div>
@@ -28,11 +28,13 @@
   </div>
   <div class="row">
     <div class="col-sm-12">
-      <p>Location: {{selectedCar.location}}</p>
-      <p>Detail : </p>
-      <p>Detail : </p>
+      <p>Suburb: {{selectedCar.location.suburb}}</p>
+      <p>Street: {{selectedCar.location.street}}</p>
+      <p>Doors : {{selectedCar.type.doors}}</p>
+      <p>Transmission : {{selectedCar.type.transmission}}</p>
+      <p>Rest of the details...</p>
       <div id="date-picker">
-        <p style="padding-bottom: 15px;">Select dates : <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)" (click)="reset()"></p>
+        <p style="padding-bottom: 15px;">Select dates : <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)"></p>
         <span style="display: none" [class.error]="invalidRange">Already a booking during that time!</span>
         <div class="payment">
           <a class="btn btn-danger">Payment</a>

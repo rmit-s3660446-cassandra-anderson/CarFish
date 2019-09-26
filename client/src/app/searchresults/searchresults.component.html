@@ -11,11 +11,11 @@
             <div class="col-sm-7">
             <div class="result-details">
                 <h5 class="name">
-                  {{result.type}}
-                  <span>{{result.location}}</span>
+                  {{result.type.brand}} {{result.type.model}}
+                  <span>{{result.location.suburb}}</span>
                 </h5>
                 <p class="price-container">
-                  <span>$100</span>
+                  <span>${{result.rate}} p/day</span>
                 </p>
                 <span class="tag1"></span>
             </div>

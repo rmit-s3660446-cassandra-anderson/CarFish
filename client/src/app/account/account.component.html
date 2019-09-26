@@ -2,7 +2,7 @@
     <!-- this section handles the sidebar navigation on the account page -->
     <div class="sidebar" style="background-color: rgba(0, 0, 0, 0.0); margin-left: 0px; margin-right: 0px;">
         <mat-card class="header">
-                <img ngxGravatar [email]="getGravatar()"> <h1>{{ getCurrentUser() }}</h1>
+                <img ngxGravatar [email]="getGravatar()"> <h1>{{ getCurrentUser().username }}</h1>
         </mat-card>
         <mat-card class="sidebarbody">
             <nav>

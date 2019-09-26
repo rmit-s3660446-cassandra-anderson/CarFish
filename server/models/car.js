@@ -3,8 +3,18 @@ const Schema = mongoose.Schema;
 
 //define our user schema
 const carSchema = new Schema({
-  type: String,
-  location: String,
+  type: {
+    brand: String,
+    model: String,
+    year: Number,
+    doors: Number,
+    transmission: String
+  },
+  location: {
+    suburb: String,
+    street: String
+  },
+  rate: Number,
   startDate: Date,
   endDate: Date,
   maxLength: Number,

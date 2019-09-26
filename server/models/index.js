@@ -36,58 +36,137 @@ module.exports = {
     console.log("Seeding the Database!")
     const user1 = new users({
       username: 'DrLove',
-      password: 'password'
+      password: 'password',
+      firstName: "Doctor",
+      lastName: "Love",
+      email: "drlove@gmail.com",
+      ccNumber: 4242424242424242,
+      csv: 123,
+      licenseNumber: "123ABCZ"
     });
     const user2 = new users({
       username: 'CheekyLover',
-      password: 'password'
+      password: 'password',
+      firstName: "Cheeky",
+      lastName: "Lover",
+      email: "cheekylover@gmail.com",
+      ccNumber: 4242424242424242,
+      csv: 432,
+      licenseNumber: "ABZ1234"
     });
     const user3 = new users({
       username: 'StrangerDanger',
-      password: 'password'
+      password: 'password',
+      firstName: "Stranger",
+      lastName: "Danger",
+      email: "strangerdanger@gmail.com",
+      ccNumber: 4242424242424242,
+      csv: 456,
+      licenseNumber: "123AFJA"
     });
     const user4 = new users({
       username: 'Batman',
-      password: 'password'
+      password: 'password',
+      firstName: "Bat",
+      lastName: "Man",
+      email: "batman@batman.com",
+      ccNumber: 4242424242424242,
+      csv: 123,
+      licenseNumber: "BAT123A"
     });
     const car1 = new cars({
-      type: "Ford Fiesta",
-      location: "Hawthron",
+      type: {
+        brand: "Ford",
+        model: "Fiesta",
+        year: 2005,
+        doors: 4,
+        transmission: "Automatic"
+      },
+      location: {
+        suburb: "Hawthorn",
+        street: "Glen Street"
+      },
+      rate: 50,
       startDate: "2019-10-01",
-      endDate: "2019-10-20",
+      endDate: "2020-02-20",
       maxLength: 7,
+      userNotes: "Parked outside house number 10",
       user: user1.id
     });
     const car2 = new cars({
-      type: "Toyota Camry",
-      location: "Abbotsford",
+      type: {
+        brand: "Toyota",
+        model: "Camry",
+        year: 2012,
+        doors: 4,
+        transmission: "Automatic"
+      },
+      location: {
+        suburb: "Abbotsford",
+        street: "Lithgow Street"
+      },
+      rate: 40,
       startDate: "2019-10-01",
       endDate: "2019-11-15",
       maxLength: 5,
+      userNotes: "Parked outside house number 20",
       user: user2.id
     });
     const car3 = new cars({
-      type: "Hyundai Getz",
-      location: "Collingwood",
+      type: {
+        brand: "Hyundai",
+        model: "Getz",
+        year: 2016,
+        doors: 4,
+        transmission: "Automatic"
+      },
+      location: {
+        suburb: "Collingwood",
+        street: "Budd Street"
+      },
+      rate: 40,
       startDate: "2019-10-01",
       endDate: "2019-11-20",
       maxLength: 5,
+      userNotes: "Parked outside house number 2",
       user: user3.id
     });
     const car4 = new cars({
-      type: "Ford Falcon",
-      location: "Collingwood",
+      type: {
+        brand: "Ford",
+        model: "Falcon XR6",
+        year: 2016,
+        doors: 4,
+        transmission: "Manual"
+      },
+      location: {
+        suburb: "Collingwood",
+        street: "Otter Street"
+      },
+      rate: 60,
       startDate: "2019-10-01",
       endDate: "2019-11-10",
       maxLength: 5,
+      userNotes: "Parked outside house number 5",
       user: user3.id
     });
     const car5 = new cars({
-      type: "Batmobile",
-      location: "Gotham",
+      type: {
+        brand: "Nissan",
+        model: "350Z",
+        year: 2009,
+        doors: 2,
+        transmission: "Automatic"
+      },
+      location: {
+        suburb: "Collingwood",
+        street: "Dight Street"
+      },
+      rate: 35,
       startDate: "2019-10-01",
       endDate: "2019-11-20",
       maxLength: 2,
+      userNotes: "Parked outside house number 15",
       user: user4.id
     });
     const booking1 = new bookings({

@@ -28,7 +28,13 @@ router.post('/signup', (req, res) => {
     if (user) return res.send({});
     req.models.users.create({
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      ccNumber: req.body.ccNumber,
+      csv: req.body.csv,
+      licenseNumber: req.body.licenseNumber
     }, function(err, user) {
         if (err) return res.send(err);
         return res.send(user);

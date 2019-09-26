@@ -36,8 +36,8 @@ export class SearchBarComponent implements OnInit {
     ).subscribe((results) => {
       this.matchingLocations = [];
       results.forEach((result) => {
-        if(!this.matchingLocations.includes(result.location)) {
-          this.matchingLocations.push(result.location);
+        if(!this.matchingLocations.includes(result.location.suburb)) {
+          this.matchingLocations.push(result.location.suburb);
         }
       })
       this.searchResults = results;
@@ -71,7 +71,7 @@ export class SearchBarComponent implements OnInit {
 
   filterResultsByLocation(location: string): void {
     if(this.searchResults) {
-      this.filteredResults = this.searchResults.filter((res) => res.location == location);
+      this.filteredResults = this.searchResults.filter((res) => res.location.suburb == location);
     }
   }
 

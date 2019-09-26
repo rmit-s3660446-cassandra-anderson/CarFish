@@ -54,5 +54,4 @@ export class AddcarformComponent implements OnInit {
     this.signupAttempt = false;
     this.signupFailed = false;
   }
-
 }
