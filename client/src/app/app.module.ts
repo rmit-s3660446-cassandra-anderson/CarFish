@@ -66,7 +66,7 @@ import { AddcarformComponent } from './addcarform/addcarform.component';
     FlexLayoutModule,
     HttpClientModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAEEomchXOIqSpxPRsF0S0cocFaNnCPWx4'
+      apiKey: 'AIzaSyC1JkBrac8GYfzVuDOYYvfR2LbVIS77jyA'
     }),
     BsDatepickerModule.forRoot()
   ],
