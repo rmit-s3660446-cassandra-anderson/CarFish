@@ -1,4 +1,4 @@
-<div *ngIf="displayResults">
+<div *ngIf="displayResults" class="search-results">
   <div *ngFor="let result of displayResults">
     <div class="container">
       <div class="result">
@@ -20,7 +20,8 @@
                 <span class="tag1"></span>
             </div>
             <div class="description">
-              <p>Put description here</p>
+              <p>Available from : {{result.startDate.split('T')[0]}}</p>
+              <p>Available until : {{result.endDate.split('T')[0]}}</p>
             </div>
             <div class="product-info">
               <a class="btn btn-danger" (click)="setSelectedCar(result)" routerLink="/booking">Book</a>

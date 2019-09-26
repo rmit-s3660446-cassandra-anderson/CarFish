@@ -8,15 +8,10 @@
 }
 
 #booking-component {
-  width: 80%;
+  width: 50%;
   margin: 0 auto;
-  padding-top : 70px;
+  padding-top : 100px;
   padding-bottom: 120px;
-}
-
-#date-picker {
-  width: 40%;
-  margin: 0 auto;
 }
 
 .error {
@@ -24,4 +19,14 @@
   font-size: small;
   font-style: italic;
   color: red;
+  padding-bottom: 15px;
+}
+
+.result-image {
+  background-color: #EBF8FE;
+  border: 1px solid #CEEFFF;
+}
+
+p, h2 {
+  border-bottom: 1px solid #dfe5e9;
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BookingService } from '../booking.service';
 import { CarService } from '../car.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-bookform',
@@ -12,14 +14,20 @@ export class BookformComponent implements OnInit {
   datePickerConfig: Partial<BsDatepickerConfig>;
   unavailableDates = [];
   invalidRange = false;
+  selectedCar: any;
 
   constructor(
     private bookingService: BookingService,
-    private carService: CarService
+    private carService: CarService,
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    let car = this.carService.getSelectedCar();
+    if(!this.userService.getCurrentUser()) {
+      this.router.navigateByUrl('login');
+    }
+    let car = this.selectedCar = this.carService.getSelectedCar();
     this.bookingService.getUnavailableDates(car._id)
       .subscribe((unavailableDates) => {
         console.log(unavailableDates);

@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
   validateLogin(res: any): void {
     if(Object.keys(res).length > 0) {
-      this.userService.setCurrentUser(res.username);
+      this.userService.setCurrentUser(res);
       this.router.navigateByUrl('');
     } else {
       this.loginFailed = true;

@@ -13,11 +13,31 @@
     </mat-select>
   </mat-form-field>
 </div> -->
-<div id="booking-component">
-  <div id="date-picker">
-    <h4><label for="search-box">Book Car</label></h4>
-    <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)" (click)="reset()">
-    <button>Book</button>
-    <span style="display: none" [class.error]="invalidRange">Already a booking during that time!</span>
+<div class="container-fluid" id="booking-component">
+  <div class="row">
+    <div class="col-sm-7">
+      <h2>{{selectedCar.type}}</h2>
+      <p>Available from : {{selectedCar.startDate.split('T')[0]}}</p>
+      <p>Available until : {{selectedCar.endDate.split('T')[0]}}</p>
+    </div>
+   <div class="col-sm-5">
+      <div class="result-image">
+        <img class="img-responsive">
+      </div>
+   </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <p>Location: {{selectedCar.location}}</p>
+      <p>Detail : </p>
+      <p>Detail : </p>
+      <div id="date-picker">
+        <p style="padding-bottom: 15px;">Select dates : <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)" (click)="reset()"></p>
+        <span style="display: none" [class.error]="invalidRange">Already a booking during that time!</span>
+        <div class="payment">
+          <a class="btn btn-danger">Payment</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

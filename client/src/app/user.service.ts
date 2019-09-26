@@ -10,7 +10,7 @@ export class UserService {
 
   private userURL = 'http://localhost:9000/users';
 
-  currentUser: string;
+  currentUser: any;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -30,11 +30,11 @@ export class UserService {
     return this.http.post<any>(url, signupDetails, this.httpOptions);
   }
 
-  setCurrentUser(username: string): void {
-    this.currentUser = username;
+  setCurrentUser(user: any): void {
+    this.currentUser = user;
   }
 
-  getCurrentUser(): string {
+  getCurrentUser(): any {
     return this.currentUser;
   }
 }
