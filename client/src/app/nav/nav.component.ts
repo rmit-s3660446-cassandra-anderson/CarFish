@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -11,7 +12,8 @@ export class NavComponent implements OnInit {
   appTitle: string = 'Carfish';
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() { }
@@ -22,6 +24,7 @@ export class NavComponent implements OnInit {
 
   logout(): void {
     this.userService.setCurrentUser("");
+    this.router.navigateByUrl('');
   }
 }
 
