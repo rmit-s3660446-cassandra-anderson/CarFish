@@ -50,6 +50,6 @@ export class BookformComponent implements OnInit {
   validateDateRange(dateRange: Date[]): void {
     let startDate = dateRange[0].getTime();
     let endDate = dateRange[1].getTime();
-    this.invalidRange = this.unavailableDates.filter((date) => date > startDate && date < endDate)).length > 0;
+    this.invalidRange = this.unavailableDates.filter((date) => date > startDate && date < endDate).length > 0;
   }
 }
