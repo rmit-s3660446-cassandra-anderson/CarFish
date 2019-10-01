@@ -14,9 +14,10 @@
         </mat-card>
     </div>
     <!-- This is the section for the content to be swapped in and out -->
-    <div class="main" style="background-color: rgba(0, 0, 0, 0.0); margin-left: 0px; margin-right: 0px;">
-        <mat-card class="contentbody" *ngIf="accountPage" style="background-color: #199fff; color:white;">Account Details</mat-card>
+    <div class="main" style="background-color: rgba(0, 0, 0, 0.0); margin-left: 0px; margin-right: 0px;"> 
         <!-- we place the different app components here and hide them when a button is pressed -->
+        <app-account-details *ngIf="accountPage"></app-account-details>
+       
         <app-addcarform *ngIf="registerCar"></app-addcarform>
         <mat-card class="contentbody" *ngIf="activityHistory" style="background-color: #199fff; color:white;">Activity History</mat-card>
     </div>

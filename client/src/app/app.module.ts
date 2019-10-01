@@ -26,6 +26,7 @@ import { MapComponent } from './map/map.component';
 import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
 import { AddcarformComponent } from './addcarform/addcarform.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AddcarformComponent } from './addcarform/addcarform.component';
     SearchresultsComponent,
     CarsComponent,
     AccountComponent,
-    AddcarformComponent
+    AddcarformComponent,
+    AccountDetailsComponent
   ],
   imports: [
     WebStorageModule,
