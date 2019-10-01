@@ -24,6 +24,7 @@
       <div class="form-group">
         <label for="price">Price</label>
           <select class="form-control" id="price" #priceFilter>
+            <option>-</option>
             <option (click)="orderByPrice('lowest')">Lowest First</option>
             <option (click)="orderByPrice('highest')">Highest First</option>
           </select>

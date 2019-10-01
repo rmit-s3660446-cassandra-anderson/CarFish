@@ -14,6 +14,7 @@ export class SearchBarComponent implements OnInit {
   @ViewChild('brandFilter', {static: false}) brandFilter: ElementRef;
   @ViewChild('doorsFilter', {static: false}) doorsFilter: ElementRef;
   @ViewChild('transmissionFilter', {static: false}) transmissionFilter: ElementRef;
+  @ViewChild('priceFilter', {static: false}) priceFilter: ElementRef;
   searchResults: any;
   matchingLocations = [];
   private searchInput = new Subject<string>();
@@ -122,11 +123,15 @@ export class SearchBarComponent implements OnInit {
     this.filteredResults.filterBy[type] = filter;
   }
 
-  orderByPrice(order: string) {
+  orderByPrice(order: string): void {
     if(order == "highest") {
-      return;
+      this.filteredResults.results.sort(function(a,b) {
+        return parseInt(a.rate) - parseInt(b.rate);
+      }).reverse();
     } else if(order == "lowest") {
-      return;
+      this.filteredResults.results.sort(function(a,b) {
+        return parseInt(a.rate) - parseInt(b.rate);
+      });
     }
   }
 
@@ -139,5 +144,6 @@ export class SearchBarComponent implements OnInit {
     this.brandFilter.nativeElement.value = 'All';
     this.doorsFilter.nativeElement.value = 'All';
     this.transmissionFilter.nativeElement.value = 'All';
+    this.priceFilter.nativeElement.value = '-';
   }
 }
