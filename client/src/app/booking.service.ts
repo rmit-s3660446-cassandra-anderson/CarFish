@@ -20,4 +20,9 @@ export class BookingService {
   getUnavailableDates(car: string): Observable<any> {
     return this.http.get<any>(`${this.bookingURL}/dates/${car}`);
   }
+
+  bookCar(bookingDetails: Object): Observable<any> {
+    const url = `${this.bookingURL}`;
+    return this.http.post<any>(url, bookingDetails, this.httpOptions);
+  }
 }

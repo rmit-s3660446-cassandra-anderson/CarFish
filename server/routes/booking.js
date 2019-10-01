@@ -35,7 +35,7 @@ router.get('/dates/:car', (req, res) => {
       bookedDates.push(start);
       let nextDay = start + dayMilliseconds;
       while(true) {
-        if(nextDay == end) {
+        if(new Date(nextDay).toLocaleDateString() == new Date(end).toLocaleDateString()) {
           bookedDates.push(end);
           break;
         };

@@ -15,6 +15,9 @@ export class BookformComponent implements OnInit {
   unavailableDates = [];
   invalidRange = false;
   selectedCar: any;
+  startDate: any;
+  endDate: any;
+  bookingAttempt = false;
 
   constructor(
     private bookingService: BookingService,
@@ -48,8 +51,25 @@ export class BookformComponent implements OnInit {
   }
 
   validateDateRange(dateRange: Date[]): void {
-    let startDate = dateRange[0].getTime();
-    let endDate = dateRange[1].getTime();
-    this.invalidRange = this.unavailableDates.filter((date) => date > startDate && date < endDate).length > 0;
+    this.startDate = new Date(dateRange[0].getFullYear(), dateRange[0].getMonth(), dateRange[0].getDate(),0,0,0,0).getTime();
+    this.endDate = new Date(dateRange[1].getFullYear(), dateRange[1].getMonth(), dateRange[1].getDate(),0,0,0,0).getTime();
+    this.invalidRange = this.unavailableDates.filter((date) => date > this.startDate && date < this.endDate).length > 0;
+  }
+
+  bookCar(): void {
+    this.bookingAttempt = true;
+    if((!this.startDate && !this.endDate) || (this.invalidRange)) {
+      console.log("Not proceeding with booking");
+      return;
+    }
+    this.bookingService.bookCar({
+      startDate: this.startDate,
+      endDate: this.endDate,
+      user: this.userService.getCurrentUser()._id,
+      car: this.selectedCar._id
+    }).subscribe((res) => {
+      console.log(res);
+      this.router.navigateByUrl('');
+    });
   }
 }
