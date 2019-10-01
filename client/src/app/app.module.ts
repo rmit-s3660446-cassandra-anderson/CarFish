@@ -27,6 +27,7 @@ import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
 import { AddcarformComponent } from './addcarform/addcarform.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { AccountHistoryComponent } from './account-history/account-history.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
     CarsComponent,
     AccountComponent,
     AddcarformComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    AccountHistoryComponent
   ],
   imports: [
     WebStorageModule,

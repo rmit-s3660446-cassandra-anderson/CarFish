@@ -7,8 +7,8 @@
         <mat-card class="sidebarbody">
             <nav>
                 <!-- these buttons hide the appropriate divs -->
-                <a mat-button (click)="showAccount()">Account</a><br>
-                <a mat-button (click)="showRegisterCar()">Register a Car</a><br>
+                <a mat-button (click)="showAccount()">Account</a><br><hr>
+                <a mat-button (click)="showRegisterCar()">Register a Car</a><br><hr>
                 <a mat-button (click)="showActivityHistory()">Activity History</a><br>
             </nav>
         </mat-card>
@@ -17,8 +17,8 @@
     <div class="main" style="background-color: rgba(0, 0, 0, 0.0); margin-left: 0px; margin-right: 0px;"> 
         <!-- we place the different app components here and hide them when a button is pressed -->
         <app-account-details *ngIf="accountPage"></app-account-details>
-       
         <app-addcarform *ngIf="registerCar"></app-addcarform>
-        <mat-card class="contentbody" *ngIf="activityHistory" style="background-color: #199fff; color:white;">Activity History</mat-card>
+        <app-account-history *ngIf="activityHistory"></app-account-history>
+        
     </div>
 </div>
