@@ -16,25 +16,31 @@
 <div class="container-fluid" id="booking-component">
   <div class="row">
     <div class="col-sm-7">
-      <h2>{{selectedCar.type.brand}} {{selectedCar.type.model}}</h2>
+        <mat-card style="background-color: #199fff; color:white;"><h2>{{selectedCar.type.brand}} {{selectedCar.type.model}}</h2></mat-card>
+      <mat-card>
       <p>Available from : {{selectedCar.startDate.split('T')[0]}}</p>
       <p>Available until : {{selectedCar.endDate.split('T')[0]}}</p>
+    </mat-card>
     </div>
    <div class="col-sm-5">
       <div class="result-image">
-        <img class="img-responsive">
+        <img src="assets/img/hyundai-getz.jpg">
       </div>
    </div>
   </div>
   <div class="row">
     <div class="col-sm-12">
+      <br>
+        <mat-card style="background-color: #199fff; color:white;"><h3>Summary details</h3></mat-card>
+        <mat-card>
       <p>Suburb: {{selectedCar.location.suburb}}</p>
       <p>Street: {{selectedCar.location.street}}</p>
       <p>Doors : {{selectedCar.type.doors}}</p>
       <p>Transmission : {{selectedCar.type.transmission}}</p>
-      <p>Rest of the details...</p>
+    </mat-card>
       <div id="date-picker">
-        <p style="padding-bottom: 15px;">Select dates : <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)"></p>
+        <br>
+        <p style="padding-bottom: 15px;">Select dates : <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)" placeholder="Enter Start/End Date"></p>
         <span style="display: none" [class.error]="invalidRange">Already a booking during that time!</span>
         <span style="display: none" [class.error]="bookingAttempt && !startDate">Please select a date range!</span>
         <div class="payment">

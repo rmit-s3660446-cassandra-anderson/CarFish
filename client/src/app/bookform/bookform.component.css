@@ -31,3 +31,9 @@
 p, h2 {
   border-bottom: 1px solid #dfe5e9;
 }
+
+img{
+  width:230px;
+  height: 160px;
+  padding-left: 40px;
+}
