@@ -1,50 +1,58 @@
-<mat-card style="background-color: #199fff; color:white;">Renting history</mat-card>
-<mat-card>
-    <table>
-        <tr>
-          <th>BRAND</th>
-          <th>SUBURB</th>
-          <th>STREET</th>
-          <th>DOORS</th>
-          <th>TRANSMISSION</th>
-          <th>DATE</th>
-        </tr>
-        <tr>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-          <td>Alfreds Futterkiste</td>
-          <td>Maria Anders</td>
-          <td>Germany</td>
-
-        </tr>
-      </table>
-</mat-card>
+<mat-card style="background-color: #199fff; color:white;">Renting History</mat-card>
+<div *ngIf="bookedCars" class="booked-cars-container">
+  <div *ngFor="let bookedCar of bookedCars">
+    <mat-card>
+      <table>
+          <tr>
+            <th>BRAND</th>
+            <th>MODEL</th>
+            <th>YEAR</th>
+            <th>FROM</th>
+            <th>TO</th>
+            <th>COST</th>
+          </tr>
+          <tr>
+            <td>{{bookedCar.car.type.brand}}</td>
+            <td>{{bookedCar.car.type.model}}</td>
+            <td>{{bookedCar.car.type.year}}</td>
+            <td>{{bookedCar.startDate.split('T')[0]}}</td>
+            <td>{{bookedCar.endDate.split('T')[0]}}</td>
+            <td>${{getTotalCost(bookedCar.startDate.split('T')[0], bookedCar.endDate.split('T')[0], bookedCar.car.rate)}}</td>
+          </tr>
+        </table>
+    </mat-card>
+  </div>
+</div>
 
 <br>
 <mat-card style="background-color: #199fff; color:white;">Added Cars</mat-card>
-<mat-card>
-    
-
-
-<table>
-  <tr>
-    <th>BRAND</th>
-    <th>MODEL</th>
-    <th>YEAR</th>
-    <th>DOOR</th>
-    <th>SUBURB</th>
-    <th>STREET</th>
-    <th>RATE</th>
-  </tr>
-  <tr>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-    <td>Alfreds Futterkiste</td>
-    <td>Maria Anders</td>
-    <td>Germany</td>
-    <td>Germany</td>
-  </tr>
-</table>
-</mat-card>
+<div *ngIf="addedCars" class="added-cars-container">
+  <div *ngFor="let addedCar of addedCars">
+    <mat-card>
+      <table>
+        <tr>
+          <th>BRAND</th>
+          <th>MODEL</th>
+          <th>YEAR</th>
+          <th>DOOR</th>
+          <th>SUBURB</th>
+          <th>STREET</th>
+          <th>RATE</th>
+          <th>FROM</th>
+          <th>TO</th>
+        </tr>
+        <tr>
+          <td>{{addedCar.type.brand}}</td>
+          <td>{{addedCar.type.model}}</td>
+          <td>{{addedCar.type.year}}</td>
+          <td>{{addedCar.type.doors}}</td>
+          <td>{{addedCar.location.suburb}}</td>
+          <td>{{addedCar.location.street}}</td>
+          <td>${{addedCar.rate}} p/week</td>
+          <td>{{addedCar.startDate.split('T')[0]}}</td>
+          <td>{{addedCar.endDate.split('T')[0]}}</td>
+        </tr>
+      </table>
+    </mat-card>
+  </div>
+</div>

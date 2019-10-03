@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 import { CookieStorage, LocalStorage, SharedStorage, SessionStorage } from 'ngx-store';
 
 @Component({
@@ -14,10 +15,14 @@ export class AccountComponent implements OnInit {
   private gravatar: string;
 
   constructor(
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) { }
 
   ngOnInit() {
+    if(!this.userService.getCurrentUser()) {
+      this.router.navigateByUrl('login');
+    }
     this.gravatar = this.getCurrentUser().username + "@carfish.com"
   }
 

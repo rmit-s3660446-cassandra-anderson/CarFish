@@ -4,21 +4,32 @@ const mongoose = require('mongoose');
 
 const router = Router();
 
-//use all the bookings in the database
+//get bookings either by car or user, or all bookings in the database
 router.get('/', (req, res) => {
-  req.models.bookings.find({}, function(err, bookings) {
-    if (err) return res.send(err);
-    return res.send(bookings);
-  })
-});
-
-//get all the bookings for a car
-router.get('/:car', (req, res) => {
-  req.models.bookings.find({'car': req.params.car}, function(err,bookings) {
-    if (err) return res.send(err);
-    if (cars) return res.send(bookings);
-    return res.send([]);
-  });
+  if(req.query.car) {
+    req.models.bookings.find({'car': req.query.car}, function(err,bookings) {
+      if (err) return res.send(err);
+      if (bookings) {
+        findMatchingCars(bookings, req, res);
+      } else {
+        return res.send([]);
+      }
+    });
+  } else if(req.query.user) {
+    req.models.bookings.find({'user': req.query.user}, function(err,bookings) {
+      if (err) return res.send(err);
+      if (bookings) {
+        findMatchingCars(bookings, req, res);
+      } else {
+        return res.send([]);
+      }
+    });
+  } else {
+    req.models.bookings.find({}, function(err, cars) {
+      if (err) return res.send(err);
+      return res.send(bookings);
+    });
+  }
 });
 
 //get the dates a car is booked for
@@ -49,6 +60,7 @@ router.get('/dates/:car', (req, res) => {
 
 //create a booking
 router.post('/', (req, res) => {
+  console.log(req.body);
   req.models.bookings.create({
     startDate: req.body.startDate,
     endDate: req.body.endDate,
@@ -61,3 +73,14 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
+
+function findMatchingCars(bookings, req, res) {
+  let processed = 0;
+  bookings.forEach(async (booking, index) => {
+    booking.car = await req.models.cars.findById(booking.car);
+    processed++;
+    if(processed == bookings.length) {
+      return res.send(bookings);
+    }
+  });
+}
