@@ -20,7 +20,11 @@ export class CarService {
 
   carSearch(input: string): Observable<any> {
     console.log("Car service search");
-    return this.http.get<any>(`${this.carURL}/${input}`)
+    return this.http.get<any>(`${this.carURL}/?suburb=${input}`)
+  }
+
+  getCarsByUser(user: string): Observable<any> {
+    return this.http.get<any>(`${this.carURL}/?user=${user}`)
   }
 
   setSelectedCar(selectedCar: any): void {

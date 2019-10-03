@@ -3,27 +3,30 @@ const uuidv4 = require('uuid/v4');
 
 const router = Router();
 
-//get all the cars in the database
+//get cars in the database, either by suburb, user, or all of them
 router.get('/', (req, res) => {
-  req.models.cars.find({}, function(err, cars) {
-    if (err) return res.send(err);
-    return res.send(cars);
-  })
-  // return res.send(Object.values(req.dummy.cars));
-});
-
-//get cars by suburb
-router.get('/:suburb', (req, res) => {
-  req.models.cars.find({'location.suburb': { $regex: req.params.suburb, $options: "i" }}, function(err,cars) {
-    if (err) return res.send(err);
-    if (cars) return res.send(cars);
-    return res.send([]);
-  });
-  // return res.send(req.dummy.cars[req.params.licensePlate]);
+  if(req.query.suburb) {
+    req.models.cars.find({'location.suburb': { $regex: req.query.suburb, $options: "i" }}, function(err,cars) {
+      if (err) return res.send(err);
+      if (cars) return res.send(cars);
+      return res.send([]);
+    });
+  } else if(req.query.user) {
+    req.models.cars.find({'user': req.query.user}, function(err,cars) {
+      if (err) return res.send(err);
+      if (cars) return res.send(cars);
+      return res.send([]);
+    });
+  } else {
+    req.models.cars.find({}, function(err, cars) {
+      if (err) return res.send(err);
+      return res.send(cars);
+    });
+  }
 });
 
 //create a car
-router.post('/', (req, res) => {
+router.post('/create', (req, res) => {
   req.models.cars.create({
     type: {
       brand: req.body.type.brand,
@@ -41,7 +44,7 @@ router.post('/', (req, res) => {
     endDate: req.body.endDate,
     maxLength: req.body.maxLength,
     user: req.body.user,
-    userNotes: req.body.notes
+    userNotes: req.body.userNotes
   }, function(err, car) {
       if (err) return res.send(err);
       return res.send(car);

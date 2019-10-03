@@ -25,4 +25,12 @@ export class BookingService {
     const url = `${this.bookingURL}`;
     return this.http.post<any>(url, bookingDetails, this.httpOptions);
   }
+
+  getBookingsByUser(user: string): Observable<any> {
+    return this.http.get<any>(`${this.bookingURL}/?user=${user}`)
+  }
+
+  getBookingsByCar(car: string): Observable<any> {
+    return this.http.get<any>(`${this.bookingURL}/?car=${car}`)
+  }
 }

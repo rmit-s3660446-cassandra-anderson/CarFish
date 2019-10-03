@@ -63,8 +63,8 @@ export class BookformComponent implements OnInit {
       return;
     }
     this.bookingService.bookCar({
-      startDate: this.startDate,
-      endDate: this.endDate,
+      startDate: new Date(this.startDate),
+      endDate: new Date(this.endDate),
       user: this.userService.getCurrentUser()._id,
       car: this.selectedCar._id
     }).subscribe((res) => {
