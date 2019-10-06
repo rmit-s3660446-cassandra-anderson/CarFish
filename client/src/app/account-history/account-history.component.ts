@@ -26,10 +26,4 @@ export class AccountHistoryComponent implements OnInit {
     this.bookingService.getBookingsByUser(this.userService.getCurrentUser()._id)
       .subscribe((bookedCars) => this.bookedCars = bookedCars);
   }
-
-  getTotalCost(start: string, end: string, rate: string): number {
-    let d1 = new Date(start);
-    let d2 = new Date(end);
-    return Math.floor((Date.UTC(d2.getFullYear(), d2.getMonth(), d2.getDate()) - Date.UTC(d1.getFullYear(), d1.getMonth(), d1.getDate()) ) /(1000 * 60 * 60 * 24)) * parseInt(rate);
-  }
 }

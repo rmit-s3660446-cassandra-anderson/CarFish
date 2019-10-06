@@ -18,6 +18,8 @@ export class BookformComponent implements OnInit {
   startDate: any;
   endDate: any;
   bookingAttempt = false;
+  bookingDetails: any;
+  errorMessage = "";
 
   constructor(
     private bookingService: BookingService,
@@ -51,25 +53,43 @@ export class BookformComponent implements OnInit {
   }
 
   validateDateRange(dateRange: Date[]): void {
-    this.startDate = new Date(dateRange[0].getFullYear(), dateRange[0].getMonth(), dateRange[0].getDate(),0,0,0,0).getTime();
-    this.endDate = new Date(dateRange[1].getFullYear(), dateRange[1].getMonth(), dateRange[1].getDate(),0,0,0,0).getTime();
-    this.invalidRange = this.unavailableDates.filter((date) => date > this.startDate && date < this.endDate).length > 0;
-  }
-
-  bookCar(): void {
     this.bookingAttempt = true;
-    if((!this.startDate && !this.endDate) || (this.invalidRange)) {
-      console.log("Not proceeding with booking");
+
+    this.startDate = new Date(dateRange[0].getFullYear(), dateRange[0].getMonth(), dateRange[0].getDate(),0,0,0,0);
+
+    this.endDate = new Date(dateRange[1].getFullYear(), dateRange[1].getMonth(), dateRange[1].getDate(),0,0,0,0);
+
+    console.log(this.startDate);
+    console.log(this.endDate);
+    console.log(this.getDays());
+    console.log(this.selectedCar.maxLength);
+
+    if(this.getDays() > parseInt(this.selectedCar.maxLength)) {
+      this.invalidRange = true;
+      this.errorMessage = "Can't book for that long!"
       return;
     }
-    this.bookingService.bookCar({
-      startDate: new Date(this.startDate),
-      endDate: new Date(this.endDate),
-      user: this.userService.getCurrentUser()._id,
-      car: this.selectedCar._id
-    }).subscribe((res) => {
-      console.log(res);
-      this.router.navigateByUrl('');
-    });
+
+    this.invalidRange = this.unavailableDates.filter((date) => date > this.startDate && date < this.endDate).length > 0;
+
+    if(!this.invalidRange) {
+      this.bookingDetails = {
+        startDate: this.startDate,
+        endDate: this.endDate,
+        cost: this.getTotalCost(),
+        user: this.userService.getCurrentUser()._id,
+        car: this.selectedCar._id
+      }
+    } else {
+      this.errorMessage = "Already a booking during that time!";
+    }
+  }
+
+  getTotalCost(): number {
+    return this.getDays() * this.selectedCar.rate;
+  }
+
+  getDays(): number {
+    return Math.floor((Date.UTC(this.endDate.getFullYear(), this.endDate.getMonth(), this.endDate.getDate()) - Date.UTC(this.startDate.getFullYear(), this.startDate.getMonth(), this.startDate.getDate()) ) /(1000 * 60 * 60 * 24));
   }
 }

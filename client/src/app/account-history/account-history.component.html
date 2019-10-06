@@ -17,7 +17,7 @@
             <td>{{bookedCar.car.type.year}}</td>
             <td>{{bookedCar.startDate.split('T')[0]}}</td>
             <td>{{bookedCar.endDate.split('T')[0]}}</td>
-            <td>${{getTotalCost(bookedCar.startDate.split('T')[0], bookedCar.endDate.split('T')[0], bookedCar.car.rate)}}</td>
+            <td>${{bookedCar.cost}}</td>
           </tr>
         </table>
     </mat-card>
