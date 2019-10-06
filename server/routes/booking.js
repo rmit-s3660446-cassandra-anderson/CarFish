@@ -65,6 +65,7 @@ router.post('/', (req, res) => {
     startDate: req.body.startDate,
     endDate: req.body.endDate,
     user: req.body.user,
+    cost: req.body.cost,
     car: req.body.car
   }, function(err, booking) {
       if (err) return res.send(err);

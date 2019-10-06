@@ -37,14 +37,15 @@
       <p>Street: {{selectedCar.location.street}}</p>
       <p>Doors : {{selectedCar.type.doors}}</p>
       <p>Transmission : {{selectedCar.type.transmission}}</p>
+      <p>Max Days : {{selectedCar.maxLength}}</p>
     </mat-card>
       <div id="date-picker">
         <br>
         <p style="padding-bottom: 15px;">Select dates : <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)" placeholder="Enter Start/End Date"></p>
-        <span style="display: none" [class.error]="invalidRange">Already a booking during that time!</span>
+        <span style="display: none" [class.error]="invalidRange">{{errorMessage}}</span>
         <span style="display: none" [class.error]="bookingAttempt && !startDate">Please select a date range!</span>
-        <div class="payment">
-          <a class="btn btn-danger" (click)="bookCar()">Payment</a>
+        <div *ngIf="!invalidRange && bookingAttempt" class="payment" (click)="bookCar()">
+            <app-paypal-sandbox [bookingDetails]="bookingDetails"></app-paypal-sandbox>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class BookingService {
   private bookingURL = 'http://localhost:9000/bookings';
+  bookedCar: any;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -32,5 +33,13 @@ export class BookingService {
 
   getBookingsByCar(car: string): Observable<any> {
     return this.http.get<any>(`${this.bookingURL}/?car=${car}`)
+  }
+
+  setBookedCar(bookedCar: any): void {
+    this.bookedCar = bookedCar;
+  }
+
+  getBookedCar(): any {
+    return this.bookedCar;
   }
 }

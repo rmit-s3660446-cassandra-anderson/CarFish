@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 const bookingSchema = new Schema({
   startDate: Date,
   endDate: Date,
+  cost: Number,
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   car: {type: Schema.Types.ObjectId, ref: 'Car'}
 });
