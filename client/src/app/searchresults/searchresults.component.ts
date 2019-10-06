@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CarService } from '../car.service'
+import { $ } from '../../../node_modules/protractor';
 
 @Component({
   selector: 'app-searchresults',
@@ -33,4 +34,7 @@ export class SearchresultsComponent implements OnInit {
     }
     return false;
   }
+  
+
+ 
 }
