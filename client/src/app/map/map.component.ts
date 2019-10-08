@@ -95,11 +95,9 @@ export class MapComponent implements OnInit {
     };
   }
 
-  // to close display boxes
-  closeBox(event){
-    console.log("click!");
-    //event.style.display = "none";
-  }
+  /*addMarker(event) {
+    this.markers.push({event.lat, event.lng})
+  } */
 
   constructor() { }
 

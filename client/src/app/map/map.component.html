@@ -11,9 +11,3 @@
     </agm-marker>
   </agm-map>
 </div>
-<div id="infoBox" class="bottom-text" *ngIf="selectedMarker">
-  <button id="close" (onclick)=closeBox($event)>x</button>
-  <p>Car Type: {{ selectedMarker.info.carName }}</p>
-  <p>Style: {{ selectedMarker.info.style }}</p>
-  <p>Cost: ${{ selectedMarker.info.costph }}</p>
-</div>
