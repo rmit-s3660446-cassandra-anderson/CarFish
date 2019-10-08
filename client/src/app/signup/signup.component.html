@@ -1,9 +1,11 @@
 
 <div>
+<mat-card style="background-color: #199fff; color:white;">SIGN UP</mat-card>
     <br>
     
 <!-- 
 <div class="signup-form"> -->
+
 
 <h5>Personal Information</h5>
 First Name:<br>
@@ -57,6 +59,7 @@ Upload your driving license:<br>
 <br>
 <fieldset>
 <span style="display: none" [class.error]="signupFailed">That username already exists!</span>
+<hr>
 <input type='submit' name='name' required (click)="signup()"><br><br>
 </fieldset>
 </div>
