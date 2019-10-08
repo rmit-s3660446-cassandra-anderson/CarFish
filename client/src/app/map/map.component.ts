@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MapsService } from '../maps.service';
 
 @Component({
   selector: 'app-map',
@@ -7,17 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapComponent implements OnInit {
 
-  // we must hard code the starting coordinates
-  // the starting point atm is London
-  latitude = 51.508742;
-  longitude = -0.120850;
+  // the starting location will be the Location
+  // grabbed from the user's IP address
+  latitude: any;
+  longitude: any;
+
+  location: any;
 
   selectedMarker;
 
   // stores the coordinates and the car info
   // associated with each point
-  markers = [
-    { lat: 51.508742,
+  markers = [];
+  /*  { lat: 51.508742,
       lng: -0.420000,
       item: {
         carName: "Toyota Corolla",
@@ -85,25 +88,34 @@ export class MapComponent implements OnInit {
       }
     }
     return item;
+  } */
+
+  constructor(private map: MapsService) { }
+
+  ngOnInit() {
+    this.map.getLocation().subscribe(data => {
+      console.log(data);
+      this.latitude = data.latitude;
+      this.longitude = data.longitude;
+    });
+    this.setCurrentPosition();
   }
 
-  selectMarker(event){
+  setCurrentPosition() {
+    if('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+      });
+    }
+  }
+
+  /*selectMarker(event){
     this.selectedMarker = {
       lat: event.latitude,
       lng: event.longitude,
       info: this.findItem(event.latitude, event.longitude)
     };
-  }
-
-  // to close display boxes
-  closeBox(event){
-    console.log("click!");
-    //event.style.display = "none";
-  }
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+  }*/
 
 }
