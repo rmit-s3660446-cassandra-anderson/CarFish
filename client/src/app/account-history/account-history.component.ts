@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { BookingService } from '../booking.service';
 import { CarService } from '../car.service';
 import { UserService } from '../user.service';
@@ -12,6 +12,10 @@ import { Router } from '@angular/router';
 export class AccountHistoryComponent implements OnInit {
   bookedCars = [];
   addedCars = [];
+  selectedCar: any;
+  bookingInfo: any;
+  @ViewChild('carModal', {static: false}) carModal: ElementRef;
+  @ViewChild('bookingModal', {static: false}) bookingModal: ElementRef;
 
   constructor(
     private bookingService: BookingService,
@@ -25,5 +29,28 @@ export class AccountHistoryComponent implements OnInit {
       .subscribe((addedCars) => this.addedCars = addedCars);
     this.bookingService.getBookingsByUser(this.userService.getCurrentUser()._id)
       .subscribe((bookedCars) => this.bookedCars = bookedCars);
+  }
+
+  displayCarModal(car: any): void {
+    this.selectedCar = car;
+    this.carModal.nativeElement.style.display = "block";
+  }
+
+  closeCarModal(): void {
+    this.selectedCar = "";
+    this.carModal.nativeElement.style.display = "none";
+  }
+
+  displayBookingModal(car: any): void {
+    this.bookingService.getBookingsByCar(car._id)
+      .subscribe((bookings) => {
+        this.bookingInfo = bookings;
+        this.bookingModal.nativeElement.style.display = "block";
+      });
+  }
+
+  closeBookingModal(): void {
+    this.bookingInfo = "";
+    this.bookingModal.nativeElement.style.display = "none";
   }
 }

@@ -1,23 +1,41 @@
 <mat-card style="background-color: #199fff; color:white;">Renting History</mat-card>
 <div *ngIf="bookedCars" class="booked-cars-container">
-  <div *ngFor="let bookedCar of bookedCars">
+  <mat-card>
+    <table>
+        <tr>
+          <th>CAR</th>
+          <th>FROM</th>
+          <th>TO</th>
+          <th>COST</th>
+        </tr>
+        <tr *ngFor="let bookedCar of bookedCars">
+          <a (click)="displayCarModal(bookedCar)"><td>{{bookedCar.car.type.brand}} {{bookedCar.car.type.model}}</td></a>
+          <td>{{bookedCar.startDate.split('T')[0]}}</td>
+          <td>{{bookedCar.endDate.split('T')[0]}}</td>
+          <td>${{bookedCar.cost}}</td>
+        </tr>
+      </table>
+  </mat-card>
+</div>
+
+<div #carModal id="carModal" class="modal">
+  <div *ngIf="selectedCar" class="modal-content">
+    <span class="close" (click)="closeCarModal()">&times;</span>
     <mat-card>
       <table>
           <tr>
             <th>BRAND</th>
             <th>MODEL</th>
             <th>YEAR</th>
-            <th>FROM</th>
-            <th>TO</th>
-            <th>COST</th>
+            <th>DOOR</th>
+            <th>TRANSMISSION</th>
           </tr>
           <tr>
-            <td>{{bookedCar.car.type.brand}}</td>
-            <td>{{bookedCar.car.type.model}}</td>
-            <td>{{bookedCar.car.type.year}}</td>
-            <td>{{bookedCar.startDate.split('T')[0]}}</td>
-            <td>{{bookedCar.endDate.split('T')[0]}}</td>
-            <td>${{bookedCar.cost}}</td>
+            <td>{{selectedCar.car.type.brand}}</td>
+            <td>{{selectedCar.car.type.model}}</td>
+            <td>{{selectedCar.car.type.year}}</td>
+            <td>{{selectedCar.car.type.doors}}</td>
+            <td>{{selectedCar.car.type.transmission}}</td>
           </tr>
         </table>
     </mat-card>
@@ -27,32 +45,52 @@
 <br>
 <mat-card style="background-color: #199fff; color:white;">Added Cars</mat-card>
 <div *ngIf="addedCars" class="added-cars-container">
-  <div *ngFor="let addedCar of addedCars">
+  <mat-card>
+    <table>
+      <tr>
+        <th>BRAND</th>
+        <th>MODEL</th>
+        <th>YEAR</th>
+        <th>DOOR</th>
+        <th>SUBURB</th>
+        <th>STREET</th>
+        <th>RATE</th>
+        <th>FROM</th>
+        <th>TO</th>
+        <th>BOOKINGS</th>
+      </tr>
+      <tr *ngFor="let addedCar of addedCars">
+        <td>{{addedCar.type.brand}}</td>
+        <td>{{addedCar.type.model}}</td>
+        <td>{{addedCar.type.year}}</td>
+        <td>{{addedCar.type.doors}}</td>
+        <td>{{addedCar.location.suburb}}</td>
+        <td>{{addedCar.location.street}}</td>
+        <td>${{addedCar.rate}} p/week</td>
+        <td>{{addedCar.startDate.split('T')[0]}}</td>
+        <td>{{addedCar.endDate.split('T')[0]}}</td>
+        <a (click)="displayBookingModal(addedCar)"><td>View</td></a>
+      </tr>
+    </table>
+  </mat-card>
+</div>
+
+<div #bookingModal id="bookingModal" class="modal">
+  <div *ngIf="bookingInfo" class="modal-content">
+    <span class="close" (click)="closeBookingModal()">&times;</span>
     <mat-card>
       <table>
-        <tr>
-          <th>BRAND</th>
-          <th>MODEL</th>
-          <th>YEAR</th>
-          <th>DOOR</th>
-          <th>SUBURB</th>
-          <th>STREET</th>
-          <th>RATE</th>
-          <th>FROM</th>
-          <th>TO</th>
-        </tr>
-        <tr>
-          <td>{{addedCar.type.brand}}</td>
-          <td>{{addedCar.type.model}}</td>
-          <td>{{addedCar.type.year}}</td>
-          <td>{{addedCar.type.doors}}</td>
-          <td>{{addedCar.location.suburb}}</td>
-          <td>{{addedCar.location.street}}</td>
-          <td>${{addedCar.rate}} p/week</td>
-          <td>{{addedCar.startDate.split('T')[0]}}</td>
-          <td>{{addedCar.endDate.split('T')[0]}}</td>
-        </tr>
-      </table>
+          <tr>
+            <th>FROM</th>
+            <th>TO</th>
+            <th>COST</th>
+          </tr>
+          <tr *ngFor="let info of bookingInfo">
+            <td>{{info.startDate.split('T')[0]}}</td>
+            <td>{{info.endDate.split('T')[0]}}</td>
+            <td>${{info.cost}}</td>
+          </tr>
+        </table>
     </mat-card>
   </div>
 </div>
