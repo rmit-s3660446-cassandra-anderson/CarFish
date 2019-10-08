@@ -39,7 +39,12 @@ export class SearchBarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // display all cars on load
+    this.carService.getAllCars()
+      .subscribe((res) => this.filteredResults.results = res);
+
     this.datePickerConfig = { containerClass: 'theme-dark-blue' };
+
     this.searchInput.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
