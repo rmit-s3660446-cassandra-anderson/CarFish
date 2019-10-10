@@ -41,7 +41,10 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
     // display all cars on load
     this.carService.getAllCars()
-      .subscribe((res) => this.filteredResults.results = res);
+      .subscribe((res) => {
+        this.filteredResults.results = res
+        this.populateDropDownFilters();
+      });
 
     this.datePickerConfig = { containerClass: 'theme-dark-blue' };
 
@@ -124,11 +127,16 @@ export class SearchBarComponent implements OnInit {
     });
   }
 
-  filterBy(type: string, filter: string): void {
+  filterBy(type: string, event: any): void {
+    console.log("filterBy");
+    console.log(type);
+    console.log(event.target.value);
+    let filter = event.target.value;
     this.filteredResults.filterBy[type] = filter;
   }
 
-  orderByPrice(order: string): void {
+  orderByPrice(event: any): void {
+    let order = event.target.value;
     if(order == "highest") {
       this.filteredResults.results.sort(function(a,b) {
         return parseInt(a.rate) - parseInt(b.rate);
@@ -146,9 +154,9 @@ export class SearchBarComponent implements OnInit {
     this.matchingLocations = [];
     Object.keys(this.filters).forEach((filter) => this.filters[filter] = []);
     Object.keys(this.filteredResults.filterBy).forEach((filter) => this.filteredResults.filterBy[filter] = "");
-    this.brandFilter.nativeElement.value = 'All';
-    this.doorsFilter.nativeElement.value = 'All';
-    this.transmissionFilter.nativeElement.value = 'All';
+    this.brandFilter.nativeElement.value = '';
+    this.doorsFilter.nativeElement.value = '';
+    this.transmissionFilter.nativeElement.value = '';
     this.priceFilter.nativeElement.value = '-';
   }
 }
