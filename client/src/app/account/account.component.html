@@ -8,6 +8,7 @@
             <nav>
                 <!-- these buttons hide the appropriate divs -->
                 <a mat-button (click)="showAccount()">Account</a><br><hr>
+                <a mat-button (click)="showMyVehicles()">My Vehicles</a><br><hr>
                 <a mat-button (click)="showRegisterCar()">Register a Car</a><br><hr>
                 <a mat-button (click)="showActivityHistory()">Activity History</a><br>
             </nav>
@@ -17,6 +18,7 @@
     <div class="main" style="background-color: rgba(0, 0, 0, 0.0); margin-left: 0px; margin-right: 0px;"> 
         <!-- we place the different app components here and hide them when a button is pressed -->
         <app-account-details *ngIf="accountPage"></app-account-details>
+        <app-my-vehicles *ngIf="myVehicles"></app-my-vehicles>
         <app-addcarform *ngIf="registerCar"></app-addcarform>
         <app-account-history *ngIf="activityHistory"></app-account-history>
         

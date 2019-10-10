@@ -9,7 +9,7 @@
           <th>COST</th>
         </tr>
         <tr *ngFor="let bookedCar of bookedCars">
-          <a (click)="displayCarModal(bookedCar)"><td>{{bookedCar.car.type.brand}} {{bookedCar.car.type.model}}</td></a>
+          <a (click)="displayCarModal(bookedCar)"><td><u>{{bookedCar.car.type.brand}} {{bookedCar.car.type.model}}</u></td></a>
           <td>{{bookedCar.startDate.split('T')[0]}}</td>
           <td>{{bookedCar.endDate.split('T')[0]}}</td>
           <td>${{bookedCar.cost}}</td>
@@ -66,10 +66,10 @@
         <td>{{addedCar.type.doors}}</td>
         <td>{{addedCar.location.suburb}}</td>
         <td>{{addedCar.location.street}}</td>
-        <td>${{addedCar.rate}} p/week</td>
+        <td>${{addedCar.rate}} p/day</td>
         <td>{{addedCar.startDate.split('T')[0]}}</td>
         <td>{{addedCar.endDate.split('T')[0]}}</td>
-        <a (click)="displayBookingModal(addedCar)"><td>View</td></a>
+        <a (click)="displayBookingModal(addedCar)"><td><u>View</u></td></a>
       </tr>
     </table>
   </mat-card>

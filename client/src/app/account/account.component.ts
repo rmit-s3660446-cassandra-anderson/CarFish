@@ -10,6 +10,7 @@ import { CookieStorage, LocalStorage, SharedStorage, SessionStorage } from 'ngx-
 })
 export class AccountComponent implements OnInit {
   public accountPage = true;
+  public myVehicles = false;
   public registerCar = false;
   public activityHistory = false;
   private gravatar: string;
@@ -30,16 +31,25 @@ export class AccountComponent implements OnInit {
     this.accountPage = true;
     this.registerCar = false;
     this.activityHistory = false;
+    this.myVehicles = false;
+  }
+  public showMyVehicles(){
+    this.accountPage = false;
+    this.registerCar = false;
+    this.activityHistory = false;
+    this.myVehicles = true;
   }
   public showRegisterCar(){
     this.accountPage = false;
     this.registerCar = true;
     this.activityHistory = false;
+    this.myVehicles = false;
   }
   public showActivityHistory(){
     this.accountPage = false;
     this.registerCar = false;
     this.activityHistory = true;
+    this.myVehicles = false;
   }
 
   getCurrentUser(): any {

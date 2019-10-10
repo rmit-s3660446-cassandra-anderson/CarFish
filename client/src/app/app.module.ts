@@ -30,6 +30,7 @@ import { AddcarformComponent } from './addcarform/addcarform.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { AccountHistoryComponent } from './account-history/account-history.component';
 import { PaypalSandboxComponent } from './paypal-sandbox/paypal-sandbox.component';
+import { MyVehiclesComponent } from './my-vehicles/my-vehicles.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { PaypalSandboxComponent } from './paypal-sandbox/paypal-sandbox.componen
     AddcarformComponent,
     AccountDetailsComponent,
     AccountHistoryComponent,
-    PaypalSandboxComponent
+    PaypalSandboxComponent,
+    MyVehiclesComponent
   ],
   imports: [
     WebStorageModule,

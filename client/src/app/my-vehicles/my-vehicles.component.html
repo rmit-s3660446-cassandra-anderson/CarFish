@@ -1,0 +1,31 @@
+<mat-card class="contentbody" style=" background-color: #199fff; color:white;">My Vehicles</mat-card>
+<mat-card> 
+    <div *ngIf="addedCars" class="added-cars-container">
+        <table>
+            <tr>
+                <th>BRAND</th>
+                <th>MODEL</th>
+                <th>YEAR</th>
+                <th>DOOR</th>
+                <th>SUBURB</th>
+                <th>STREET</th>
+                <th>RATE</th>
+                <th>FROM</th>
+                <th>TO</th>
+                <th>OPTION</th>
+            </tr>
+            <tr *ngFor="let addedCar of addedCars">
+                <td>{{addedCar.type.brand}}</td>
+                <td>{{addedCar.type.model}}</td>
+                <td>{{addedCar.type.year}}</td>
+                <td>{{addedCar.type.doors}}</td>
+                <td>{{addedCar.location.suburb}}</td>
+                <td>{{addedCar.location.street}}</td>
+                <td>${{addedCar.rate}} p/day</td>
+                <td>{{addedCar.startDate.split('T')[0]}}</td>
+                <td>{{addedCar.endDate.split('T')[0]}}</td>
+                <a (click)="displayBookingModal(addedCar)"><td><u>Unlist</u></td></a>
+            </tr>
+        </table>
+    </div>
+</mat-card>
