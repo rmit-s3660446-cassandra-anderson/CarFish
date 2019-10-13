@@ -59,6 +59,7 @@ export class SearchBarComponent implements OnInit {
       });
 
     this.datePickerConfig = { containerClass: 'theme-dark-blue' };
+  }
 
   /* as the user types in a location, google autofills it.
     when the user selects a location from the list, the Object
