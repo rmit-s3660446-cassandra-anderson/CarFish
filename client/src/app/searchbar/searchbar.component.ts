@@ -12,11 +12,12 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.css']
 })
+
 export class SearchBarComponent implements OnInit {
   // to get the google autocomplete to work
   @Input() addressType: string;
   @Output() setAddress: EventEmitter<any> = new EventEmitter();
-  @ViewChild('addressText') addressText: any;
+  @ViewChild('addressText', {static: false}) addressText: any;
   autocompleteInput: string;
 
   // to get the normal autofill to work
@@ -26,7 +27,6 @@ export class SearchBarComponent implements OnInit {
   @ViewChild('transmissionFilter', {static: false}) transmissionFilter: ElementRef;
   @ViewChild('priceFilter', {static: false}) priceFilter: ElementRef;
   searchResults: any;
-  matchingLocations = [];
 
   private searchInput = new Subject<any>();
   filteredResults = {
@@ -67,21 +67,6 @@ export class SearchBarComponent implements OnInit {
     to the CarService where a list of cars in that area are generated
     */
   ngAfterViewInit() {
-    this.carService.carSearch(this.getPlaceAutocomplete()['formatted_address']).subscribe((results) => {
-      console.log(results);
-      this.matchingLocations = [];
-      results.forEach((result) => {
-        if(!this.matchingLocations.includes(result.location.suburb)) {
-          this.matchingLocations.push(result.location.suburb);
-        }
-      })
-      console.log(this.searchInput);
-      this.searchResults = results;
-    });
-  }
-
-  // This is google generating a list of places that the user may be typing in
-  getPlaceAutocomplete() {
     const autocomplete = new google.maps.places.Autocomplete(this.addressText.nativeElement,
     {
       componentRestrictions: { country: 'AU' }, //restricting the search range to Australia
@@ -89,19 +74,38 @@ export class SearchBarComponent implements OnInit {
     });
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       const place = autocomplete.getPlace();
-      this.invokeEvent(place);
-      return place;
-    });
-    //var place = autocomplete.getPlace();
-}
+      /* there is an array that stores the different components of
+         the address. We're grabbing the suburb */
+      const addressLength = place['address_components'].length;
+      // the suburb is the fifth element from the end of the array if a suburb is given
+      var suburb = "";
+      if (addressLength >= 5) {
+        suburb = place['address_components'][addressLength - 5];
+      } else {
+        // if there's no fifth element, just use the first one
+        suburb = place['address_components'][0];
+      }
+      console.log("Place object", place);
+      console.log("place location", place['geometry']['location'].lat(), place['geometry']['location'].lng());
+      //console.log("party in the 'burbs", typeof suburb['long_name']);
 
-  // Push a search term into the observable stream.
+      // now that we have the suburb, we can pass it to the casService
+      this.carService.carSearch(suburb['long_name']).subscribe((results) => {
+        console.log("after callback ", results);
+        this.searchResults = results;
+      });
+    });
+  }
+
+  // Push a search term into the observable stream
+  // unsure if needed ¯\_(ツ)_/¯
   invokeEvent(place: Object) {
     this.setAddress.emit(place);
-    console.log(place);
+    console.log("invoke ", place);
   }
 
   validateSearch(dateRange: string, location: string): void {
+    console.log("location ", location);
     this.resetValues();
     this.filterResultsByLocation(location);
 
@@ -125,8 +129,9 @@ export class SearchBarComponent implements OnInit {
   }
 
   filterResultsByLocation(location: string): void {
+
     if(this.searchResults) {
-      this.filteredResults.results = this.searchResults.filter((res) => res.location.suburb == location);
+      this.filteredResults.results = this.searchResults.filter((res) => location.includes(res.location.suburb));
     }
   }
 
@@ -137,7 +142,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   selectLocation(location: string): void {
-    this.matchingLocations = [];
     this.searchLocation.nativeElement.value = location;
   }
 
@@ -179,7 +183,6 @@ export class SearchBarComponent implements OnInit {
   resetValues(): void {
     this.filteredResults.results = [];
     this.resultsError = "";
-    this.matchingLocations = [];
     Object.keys(this.filters).forEach((filter) => this.filters[filter] = []);
     Object.keys(this.filteredResults.filterBy).forEach((filter) => this.filteredResults.filterBy[filter] = "");
     this.brandFilter.nativeElement.value = '';
