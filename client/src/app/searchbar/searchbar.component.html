@@ -2,7 +2,8 @@
   <h4><label for="search-box">Car Search</label></h4>
 
   <div id="search-box">
-    <input #searchLocation id="search-location" (input)="search(searchLocation.value)"
+    <!--<input searchLocation id="searchLocation" [(ngModel)]="autocompleteInput">-->
+    <input #addressText id="search-location" [(ngModel)]="autocompleteInput"
     placeholder="Search by suburb" />
     <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig" placeholder="Start Date - End Date">
     <button (click)="validateSearch(dateRange.value, searchLocation.value)">Search</button>
