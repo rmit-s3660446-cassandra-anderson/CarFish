@@ -169,33 +169,57 @@ module.exports = {
       userNotes: "Parked outside house number 15",
       user: user4.id
     });
+    const car6 = new cars({
+      type: {
+        brand: "Volkswagon",
+        model: "Kombi",
+        year: 1990,
+        doors: 4,
+        transmission: "Manual"
+      },
+      location: {
+        suburb: "Seaford",
+        street: "Coolibar ave"
+      },
+      rate: 300,
+      startDate: "2019-10-01",
+      endDate: "2019-11-20",
+      maxLength: 4,
+      userNotes: "Parked outside house number 15",
+      user: user4.id
+    });
     const booking1 = new bookings({
       startDate: "2019-10-03",
       endDate: "2019-10-07",
+      cost: 200,
       user: user2.id,
       car: car1.id
     });
     const booking2 = new bookings({
       startDate: "2019-10-12",
       endDate: "2019-10-15",
+      cost: 200,
       user: user3.id,
       car: car1.id
     });
     const booking3 = new bookings({
       startDate: "2019-10-10",
       endDate: "2019-10-15",
+      cost: 200,
       user: user1.id,
       car: car2.id
     });
     const booking4 = new bookings({
       startDate: "2019-10-10",
       endDate: "2019-10-15",
+      cost: 200,
       user: user1.id,
       car: car3.id
     });
     const booking5 = new bookings({
       startDate: "2019-10-20",
       endDate: "2019-11-01",
+      cost: 385,
       user: user3.id,
       car: car5.id
     });
@@ -209,6 +233,7 @@ module.exports = {
     await car3.save();
     await car4.save();
     await car5.save();
+    await car6.save();
 
     await booking1.save();
     await booking2.save();

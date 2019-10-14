@@ -15,6 +15,11 @@
     border: 1px solid #CEEFFF;
     padding-top: 40px;
 }
+img{
+    width: 200px;
+    height: 200px;
+    padding-bottom: 37px;
+}
 
 .result-details {
     border-bottom: 1px solid #dfe5e9;

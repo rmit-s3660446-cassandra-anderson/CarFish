@@ -21,20 +21,44 @@ export class SearchBarComponent implements OnInit {
 
   // to get the normal autofill to work
   @ViewChild('searchLocation', {static: false}) searchLocation: ElementRef;
+  @ViewChild('brandFilter', {static: false}) brandFilter: ElementRef;
+  @ViewChild('doorsFilter', {static: false}) doorsFilter: ElementRef;
+  @ViewChild('transmissionFilter', {static: false}) transmissionFilter: ElementRef;
+  @ViewChild('priceFilter', {static: false}) priceFilter: ElementRef;
   searchResults: any;
   matchingLocations = [];
+
   private searchInput = new Subject<any>();
-  filteredResults = [];
+  filteredResults = {
+    results: [],
+    filterBy: {
+      doors: "",
+      brand: "",
+      transmission: ""
+    }
+  };
+
   resultsError: string;
   datePickerConfig: Partial<BsDatepickerConfig>;
+  filters = {
+    doors: [],
+    brand: [],
+    transmission: []
+  }
 
   constructor(
     private carService: CarService
   ) { }
 
   ngOnInit(): void {
+    // display all cars on load
+    this.carService.getAllCars()
+      .subscribe((res) => {
+        this.filteredResults.results = res
+        this.populateDropDownFilters();
+      });
+
     this.datePickerConfig = { containerClass: 'theme-dark-blue' };
-  }
 
   /* as the user types in a location, google autofills it.
     when the user selects a location from the list, the Object
@@ -80,10 +104,11 @@ export class SearchBarComponent implements OnInit {
     this.resetValues();
     this.filterResultsByLocation(location);
 
-    if (!this.searchResults || this.filteredResults.length == 0) {
+    if (!this.searchResults || this.filteredResults.results.length == 0) {
       this.resultsError = "No cars in that location! Please try another."
       return;
     } else if(dateRange == "") {
+      this.populateDropDownFilters();
       return;
     }
 
@@ -91,19 +116,21 @@ export class SearchBarComponent implements OnInit {
     let endDate = Date.parse(dateRange.split(" ")[2]);
     this.filterResultsByDate(startDate, endDate);
 
-    if (this.filteredResults.length == 0) {
+    if (this.filteredResults.results.length == 0) {
       this.resultsError = "No cars available in that date range!  Please try another."
     }
+
+    this.populateDropDownFilters();
   }
 
   filterResultsByLocation(location: string): void {
     if(this.searchResults) {
-      this.filteredResults = this.searchResults.filter((res) => res.location.suburb == location);
+      this.filteredResults.results = this.searchResults.filter((res) => res.location.suburb == location);
     }
   }
 
   filterResultsByDate(startDate: number, endDate: number): void {
-    this.filteredResults = this.filteredResults.filter((result) => {
+    this.filteredResults.results = this.filteredResults.results.filter((result) => {
       return (startDate <= Date.parse(result.startDate) && endDate >= Date.parse(result.endDate));
     });
   }
@@ -113,9 +140,50 @@ export class SearchBarComponent implements OnInit {
     this.searchLocation.nativeElement.value = location;
   }
 
+  populateDropDownFilters(): void {
+    this.filteredResults.results.forEach((res) => {
+      if(!this.filters.brand.includes(res.type.brand)) {
+        this.filters.brand.push(res.type.brand);
+      }
+      if(!this.filters.doors.includes(res.type.doors)) {
+        this.filters.doors.push(res.type.doors);
+      }
+      if(!this.filters.transmission.includes(res.type.transmission)) {
+        this.filters.transmission.push(res.type.transmission);
+      }
+    });
+  }
+
+  filterBy(type: string, event: any): void {
+    console.log("filterBy");
+    console.log(type);
+    console.log(event.target.value);
+    let filter = event.target.value;
+    this.filteredResults.filterBy[type] = filter;
+  }
+
+  orderByPrice(event: any): void {
+    let order = event.target.value;
+    if(order == "highest") {
+      this.filteredResults.results.sort(function(a,b) {
+        return parseInt(a.rate) - parseInt(b.rate);
+      }).reverse();
+    } else if(order == "lowest") {
+      this.filteredResults.results.sort(function(a,b) {
+        return parseInt(a.rate) - parseInt(b.rate);
+      });
+    }
+  }
+
   resetValues(): void {
-    this.filteredResults = [];
+    this.filteredResults.results = [];
     this.resultsError = "";
     this.matchingLocations = [];
+    Object.keys(this.filters).forEach((filter) => this.filters[filter] = []);
+    Object.keys(this.filteredResults.filterBy).forEach((filter) => this.filteredResults.filterBy[filter] = "");
+    this.brandFilter.nativeElement.value = '';
+    this.doorsFilter.nativeElement.value = '';
+    this.transmissionFilter.nativeElement.value = '';
+    this.priceFilter.nativeElement.value = '-';
   }
 }

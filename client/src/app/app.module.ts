@@ -7,6 +7,7 @@ import { AgmCoreModule } from '@agm/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 import { GravatarModule } from  'ngx-gravatar';
 import {WebStorageModule, LocalStorageService} from "ngx-store";
@@ -26,6 +27,10 @@ import { MapComponent } from './map/map.component';
 import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
 import { AddcarformComponent } from './addcarform/addcarform.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { AccountHistoryComponent } from './account-history/account-history.component';
+import { PaypalSandboxComponent } from './paypal-sandbox/paypal-sandbox.component';
+import { MyVehiclesComponent } from './my-vehicles/my-vehicles.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,11 @@ import { AddcarformComponent } from './addcarform/addcarform.component';
     SearchresultsComponent,
     CarsComponent,
     AccountComponent,
-    AddcarformComponent
+    AddcarformComponent,
+    AccountDetailsComponent,
+    AccountHistoryComponent,
+    PaypalSandboxComponent,
+    MyVehiclesComponent
   ],
   imports: [
     WebStorageModule,
@@ -68,7 +77,8 @@ import { AddcarformComponent } from './addcarform/addcarform.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC1JkBrac8GYfzVuDOYYvfR2LbVIS77jyA'
     }),
-    BsDatepickerModule.forRoot()
+    BsDatepickerModule.forRoot(),
+    NgxPayPalModule
   ],
   providers: [LocalStorageService],
   bootstrap: [AppComponent]

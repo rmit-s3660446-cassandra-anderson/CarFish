@@ -47,5 +47,5 @@ mongoose.connect("mongodb+srv://carfish_admin:csit-carfish-2019@cluster0-56z8j.m
     console.log("Express app is listening on port " + port);
   });
 }).catch((error) => {
-  handleError(error);
+  console.log(error);
 });

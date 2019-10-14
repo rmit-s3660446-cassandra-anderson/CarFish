@@ -1,39 +1,68 @@
 <mat-card class="contentbody" style=" background-color: #199fff; color:white;">Register A Car To Your Account</mat-card>
 <mat-card>
         <div>
-            <h5>Personal Information</h5>
-            Vehicle Type:<br>
-            <input class="s-input" type='type' name='type' placeholder="Enter type.." (click)="resetErrors()" [(ngModel)]="signupDetails.type"><br>
-            <span style="display: none" [class.error]="signupDetails.type == '' && signupAttempt">Please enter a type</span>
+            <h5>Vehicle Information</h5>
+            Vehicle brand:<br>
+            <input class="s-input" type='text' name='brand' placeholder="Enter brand.." (click)="resetErrors()" [(ngModel)]="signupDetails.type.brand"><br>
+            <span style="display: none" [class.error]="signupDetails.type.brand == '' && signupAttempt">Please enter a brand</span>
             <br>
-            Vehicle Licence Plate:<br>
-            <input class="s-input" type='text' name='licence' placeholder="Enter licence plate.." (click)="resetErrors()" [(ngModel)]="signupDetails.licence"><br>
-            <span style="display: none" [class.error]="signupDetails.licence == '' && signupAttempt">Please enter a licence plate</span>
+            Vehicle model:<br>
+            <input class="s-input" type='text' name='model' placeholder="Enter model.." (click)="resetErrors()" [(ngModel)]="signupDetails.type.model"><br>
+            <span style="display: none" [class.error]="signupDetails.type.model == '' && signupAttempt">Please enter a model</span>
             <br>
-            Location of Vehicle (This is where the customer will pickup and drop off the vehicle):<br>
-            <input class="s-input" type='text' name='location' placeholder="Enter location.." (click)="resetErrors()" [(ngModel)]="signupDetails.location"><br>
-            <span style="display: none" [class.error]="signupDetails.location == '' && signupAttempt">Please enter a location</span>
+            Vehicle year:<br>
+            <input class="s-input" type='number' name='year' placeholder="Enter year.." (click)="resetErrors()" [(ngModel)]="signupDetails.type.year" min="1950"><br>
+            <span style="display: none" [class.error]="signupDetails.type.year == '' && signupAttempt">Please enter a year</span>
             <br>
-            Start date(When the vehicle may be rented):<br>
-            <input class="s-input"type='startDate' name='startDate' placeholder="Enter start date.." (click)="resetErrors()" [(ngModel)]="signupDetails.startDate"><br>
+            Vehicle doors:<br>
+            <input class="s-input" type='number' name='doors' (click)="resetErrors()" [(ngModel)]="signupDetails.type.doors" min="0" max="5" ><br>
+            <span style="display: none" [class.error]="signupDetails.type.doors == '' && signupAttempt">Please enter a doors</span>
+            <br>
+            Vehicle transmission:<br>
+            <select class="s-input" type='text' name='transmission' (click)="resetErrors()" [(ngModel)]="signupDetails.type.transmission"><br>
+                <option value="Automatic">Automatic</option>
+                <option value="Manual">Manual</option>
+            </select>
+            <span style="display: none" [class.error]="signupDetails.type.transmission == '' && signupAttempt">Please enter a transmission</span>
+            <br>
+            <br>
+
+            <h5>Vehicle Location</h5>
+            Suburb:<br>
+            <input class="s-input" type='text' name='suburb' placeholder="Enter suburb.." (click)="resetErrors()" [(ngModel)]="signupDetails.location.suburb"><br>
+            <span style="display: none" [class.error]="signupDetails.location.suburb == '' && signupAttempt">Please enter a suburb plate</span>
+            <br>
+            Street:<br>
+            <input class="s-input" type='text' name='street' placeholder="Enter street.." (click)="resetErrors()" [(ngModel)]="signupDetails.location.street"><br>
+            <span style="display: none" [class.error]="signupDetails.location.street == '' && signupAttempt">Please enter a street</span>
+            <br>
+            <br>
+
+            <h5>Listing Information</h5>
+            Rate($/day):<br>
+            <input class="s-input"type='number' name='rate' placeholder="Enter rate.." (click)="resetErrors()" [(ngModel)]="signupDetails.rate"><br>
+            <span style="display: none" [class.error]="signupDetails.rate == '' && signupAttempt">Please enter a rate</span>
+            <br>
+            Start date(When the vehicle begins its renting listing):<br>
+            <input class="s-input" type='date' name='startDate' placeholder="Enter start date.." (click)="resetErrors()" [(ngModel)]="signupDetails.startDate"><br>
             <span style="display: none" [class.error]="signupDetails.startDate == '' && signupAttempt">Please enter an start date</span>
             <br>
             End date(When the vehicle finishes its renting listing):<br>
-            <input class="s-input"type='endDate' name='endDate' placeholder="Enter end date.." (click)="resetErrors()" [(ngModel)]="signupDetails.endDate"><br>
+            <input class="s-input" type='date' name='endDate' placeholder="Enter end date.." (click)="resetErrors()" [(ngModel)]="signupDetails.endDate"><br>
             <span style="display: none" [class.error]="signupDetails.endDate == '' && signupAttempt">Please enter an end date</span>
             <br>
-            Max length of a single renting:<br>
-            <input class="s-input"type='maxLength' name='maxLength' placeholder="Enter max length.." (click)="resetErrors()" [(ngModel)]="signupDetails.maxLength"><br>
-            <span style="display: none" [class.error]="signupDetails.maxLength == '' && signupAttempt">Please enter an Max length</span>
+            Max Length(Maximum days that a user can rent your vehicle):<br>
+            <input class="s-input" type='text' name='maxLength' placeholder="Enter max rental time.."  (click)="resetErrors()" [(ngModel)]="signupDetails.maxLength"><br>
+            <span style="display: none" [class.error]="signupDetails.maxLength == '' && signupAttempt">Please enter maximum rental time</span>
             <br>
             Owner's Notes:<br>
-            <input class="s-input" type='userNotes' name='userNotes' placeholder="Enter owner's notes.."  (click)="resetErrors()" [(ngModel)]="signupDetails.userNotes"><br>
+            <input class="s-input" type='text' name='userNotes' placeholder="Enter owner's notes.."  (click)="resetErrors()" [(ngModel)]="signupDetails.userNotes"><br>
             <span style="display: none" [class.error]="signupDetails.userNotes == '' && signupAttempt">Please enter a owner's notes</span>
             <br>
 
             <fieldset>
                 <span style="display: none" [class.error]="signupFailed">There was an issue registering this vehicle!</span>
-                <input type='submit' name='name' required (click)="register()"><br><br>
+                <input type='submit' name='submitButton' required (click)="register()"><br><br>
             </fieldset>
         </div>
 </mat-card>

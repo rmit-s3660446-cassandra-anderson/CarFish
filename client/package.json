@@ -29,6 +29,7 @@
     "jquery": "^3.4.1",
     "ngx-bootstrap": "^5.1.2",
     "ngx-gravatar": "^8.0.0",
+    "ngx-paypal": "^5.0.0",
     "ngx-store": "^2.1.0",
     "popper": "^1.0.1",
     "popper.js": "^1.15.0",

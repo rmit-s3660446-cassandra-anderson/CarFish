@@ -1,19 +1,21 @@
 <div *ngIf="displayResults" class="search-results">
-  <div *ngFor="let result of displayResults">
-    <div class="container">
+  <div *ngFor="let result of displayResults.results">
+    <div *ngIf="!filterResult(result)" class="container">
       <div class="result">
         <div class="row">
             <div class="col-sm-5">
+              
               <div class="result-image">
-                <img class="img-responsive">
+                 <img src='assets/img/{{result.type.brand}}-{{result.type.model}}.jpg'>
               </div>
-            </div>
+        </div>
             <div class="col-sm-7">
             <div class="result-details">
                 <h5 class="name">
                   {{result.type.brand}} {{result.type.model}}
                   <span>{{result.location.suburb}}</span>
                 </h5>
+
                 <p class="price-container">
                   <span>${{result.rate}} p/day</span>
                 </p>

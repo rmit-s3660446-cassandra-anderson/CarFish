@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarService } from '../car.service';
+import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,13 +9,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./addcarform.component.css']
 })
 export class AddcarformComponent implements OnInit {
+
   signupDetails = {
-    type: "",
-    licence: "",
-    location: "",
+    type: {
+      brand: "",
+      model: "",
+      year: "",
+      doors: "",
+      transmission: ""
+    },
+    location: {
+      suburb: "",
+      street: ""
+    },
+    rate: "",
     startDate: "",
     endDate: "",
     maxLength: "",
+    user: this.userService.getCurrentUser()._id,
     userNotes: ""
   };
 
@@ -24,6 +36,7 @@ export class AddcarformComponent implements OnInit {
 
   constructor(
     private carService: CarService,
+    private userService: UserService,
     private router: Router
   ) { }
 
