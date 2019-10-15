@@ -23,7 +23,7 @@ export class CarService {
   }
 
   carSearch(input: string): Observable<any> {
-    console.log("Car service search");
+    console.log("Car service search", input);
     return this.http.get<any>(`${this.carURL}/?suburb=${input}`);
   }
 

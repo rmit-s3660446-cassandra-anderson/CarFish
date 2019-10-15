@@ -21,14 +21,12 @@ export class SearchBarComponent implements OnInit {
   autocompleteInput: string;
 
   // to get the normal autofill to work
-  @ViewChild('searchLocation', {static: false}) searchLocation: ElementRef;
   @ViewChild('brandFilter', {static: false}) brandFilter: ElementRef;
   @ViewChild('doorsFilter', {static: false}) doorsFilter: ElementRef;
   @ViewChild('transmissionFilter', {static: false}) transmissionFilter: ElementRef;
   @ViewChild('priceFilter', {static: false}) priceFilter: ElementRef;
   searchResults: any;
 
-  private searchInput = new Subject<any>();
   filteredResults = {
     results: [],
     filterBy: {
@@ -139,10 +137,6 @@ export class SearchBarComponent implements OnInit {
     this.filteredResults.results = this.filteredResults.results.filter((result) => {
       return (startDate <= Date.parse(result.startDate) && endDate >= Date.parse(result.endDate));
     });
-  }
-
-  selectLocation(location: string): void {
-    this.searchLocation.nativeElement.value = location;
   }
 
   populateDropDownFilters(): void {
