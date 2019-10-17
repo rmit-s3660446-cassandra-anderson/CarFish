@@ -1,13 +1,18 @@
 <div id="map">
   <agm-map
-    [latitude]="latitude"
-    [longitude]="longitude">
+    [latitude]="mapLatitude"
+    [longitude]="mapLongitude"
+    [zoom]="zoom">
     <!-- Displaying multiple markers -->
     <agm-marker
       *ngFor="let marker of markers"
       [latitude]="marker.lat"
-      [longitude]="marker.lng"
-      (markerClick)="selectMarker($event)">
+      [longitude]="marker.lng">
+      <!-- this is the window that displays the car information on the map -->
+      <agm-info-window>
+        <div id="infoBold">{{ marker.info.car }}</div>
+        <div>{{ marker.info.location }}</div>
+      </agm-info-window>
     </agm-marker>
   </agm-map>
 </div>
