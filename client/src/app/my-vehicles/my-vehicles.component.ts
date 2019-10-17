@@ -5,44 +5,40 @@ import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-account-history',
-  templateUrl: './account-history.component.html',
-  styleUrls: ['./account-history.component.css']
+  selector: 'app-my-vehicles',
+  templateUrl: './my-vehicles.component.html',
+  styleUrls: ['./my-vehicles.component.css']
 })
-export class AccountHistoryComponent implements OnInit {
-  bookedCars = [];
+export class MyVehiclesComponent implements OnInit {
   addedCars = [];
   selectedCar: any;
   bookingInfo: any;
-  @ViewChild('carModal', {static: false}) carModal: ElementRef;
   @ViewChild('bookingModal', {static: false}) bookingModal: ElementRef;
 
   constructor(
-    private bookingService: BookingService,
     private carService: CarService,
     private userService: UserService,
-    private router: Router,
+    private bookingService: BookingService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.carService.getCarsByUser(this.userService.getCurrentUser()._id)
-      .subscribe((addedCars) => this.addedCars = addedCars);
-    this.getBookingsByUser();
+      .subscribe((addedCars) => this.addedCars = this.displayListedCars(addedCars));
   }
 
-  getBookingsByUser(): void {
-    this.bookingService.getBookingsByUser(this.userService.getCurrentUser()._id)
-      .subscribe((bookedCars) => this.bookedCars = bookedCars);
+  setCarAsUnlisted(car: any): void {
+    this.carService.unlistCar(car._id)
+      .subscribe((res) => {
+        console.log(res);
+        this.addedCars = this.addedCars.filter((car) => car._id != res._id);
+      });
   }
 
-  displayCarModal(car: any): void {
-    this.selectedCar = car;
-    this.carModal.nativeElement.style.display = "block";
-  }
-
-  closeCarModal(): void {
-    this.selectedCar = "";
-    this.carModal.nativeElement.style.display = "none";
+  displayListedCars(addedCars: any): any {
+    addedCars = addedCars.filter((car) => car.status == "Listed");
+    console.log(addedCars);
+    return addedCars;
   }
 
   displayBookingModal(car: any): void {
@@ -51,6 +47,11 @@ export class AccountHistoryComponent implements OnInit {
         this.bookingInfo = bookings;
         this.bookingModal.nativeElement.style.display = "block";
       });
+  }
+
+  markCarAsReturned(booking: any): void {
+    this.bookingService.markCarAsReturned(booking)
+      .subscribe((res) => this.bookingInfo = res);
   }
 
   closeBookingModal(): void {

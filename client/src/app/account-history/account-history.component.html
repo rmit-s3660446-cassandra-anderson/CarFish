@@ -6,12 +6,14 @@
           <th>CAR</th>
           <th>FROM</th>
           <th>TO</th>
+          <th>STATUS</th>
           <th>COST</th>
         </tr>
         <tr *ngFor="let bookedCar of bookedCars">
-          <a (click)="displayCarModal(bookedCar)"><td>{{bookedCar.car.type.brand}} {{bookedCar.car.type.model}}</td></a>
+          <a (click)="displayCarModal(bookedCar)"><td><u>{{bookedCar.car.type.brand}} {{bookedCar.car.type.model}}</u></td></a>
           <td>{{bookedCar.startDate.split('T')[0]}}</td>
           <td>{{bookedCar.endDate.split('T')[0]}}</td>
+          <td>{{bookedCar.status}}</td>
           <td>${{bookedCar.cost}}</td>
         </tr>
       </table>
@@ -27,7 +29,7 @@
             <th>BRAND</th>
             <th>MODEL</th>
             <th>YEAR</th>
-            <th>DOOR</th>
+            <th>DOORS</th>
             <th>TRANSMISSION</th>
           </tr>
           <tr>
@@ -51,25 +53,25 @@
         <th>BRAND</th>
         <th>MODEL</th>
         <th>YEAR</th>
-        <th>DOOR</th>
         <th>SUBURB</th>
         <th>STREET</th>
         <th>RATE</th>
         <th>FROM</th>
         <th>TO</th>
+        <th>STATUS</th>
         <th>BOOKINGS</th>
       </tr>
       <tr *ngFor="let addedCar of addedCars">
         <td>{{addedCar.type.brand}}</td>
         <td>{{addedCar.type.model}}</td>
         <td>{{addedCar.type.year}}</td>
-        <td>{{addedCar.type.doors}}</td>
         <td>{{addedCar.location.suburb}}</td>
         <td>{{addedCar.location.street}}</td>
-        <td>${{addedCar.rate}} p/week</td>
+        <td>${{addedCar.rate}} p/day</td>
         <td>{{addedCar.startDate.split('T')[0]}}</td>
         <td>{{addedCar.endDate.split('T')[0]}}</td>
-        <a (click)="displayBookingModal(addedCar)"><td>View</td></a>
+        <td>{{addedCar.status}}</td>
+        <td><button class="btn btn-primary" (click)="displayBookingModal(addedCar)">View</button></td>
       </tr>
     </table>
   </mat-card>
@@ -84,11 +86,13 @@
             <th>FROM</th>
             <th>TO</th>
             <th>COST</th>
+            <th>STATUS</th>
           </tr>
           <tr *ngFor="let info of bookingInfo">
             <td>{{info.startDate.split('T')[0]}}</td>
             <td>{{info.endDate.split('T')[0]}}</td>
             <td>${{info.cost}}</td>
+            <td>{{info.status}}</td>
           </tr>
         </table>
     </mat-card>

@@ -23,37 +23,37 @@
     <div class="col-sm-1">
       <div class="form-group">
         <label for="price">Price</label>
-          <select class="form-control" id="price" #priceFilter>
+          <select class="form-control" id="price" #priceFilter (change)="orderByPrice($event)">
             <option>-</option>
-            <option (click)="orderByPrice('lowest')">Lowest First</option>
-            <option (click)="orderByPrice('highest')">Highest First</option>
+            <option value="lowest">Lowest First</option>
+            <option value="highest">Highest First</option>
           </select>
       </div>
     </div>
     <div class="col-sm-1">
       <div class="form-group">
         <label for="brand">Brand</label>
-          <select class="form-control" id="brand" #brandFilter>
-            <option (click)="filterBy('brand', '')">All</option>
-            <option *ngFor="let brand of filters.brand" (click)="filterBy('brand', brand)">{{brand}}</option>
+          <select class="form-control" id="brand" #brandFilter (change)="filterBy('brand', $event)">
+            <option value="">All</option>
+            <option *ngFor="let brand of filters.brand" value={{brand}}>{{brand}}</option>
           </select>
       </div>
     </div>
     <div class="col-sm-1">
       <div class="form-group">
         <label for="doors">Doors</label>
-        <select class="form-control" id="doors" #doorsFilter>
-          <option (click)="filterBy('doors', '')">All</option>
-          <option *ngFor="let doors of filters.doors" (click)="filterBy('doors', doors)">{{doors}}</option>
+        <select class="form-control" id="doors" #doorsFilter (change)="filterBy('doors', $event)">
+          <option value="">All</option>
+          <option *ngFor="let doors of filters.doors" value={{doors}}>{{doors}}</option>
         </select>
       </div>
     </div>
     <div class="col-sm-1">
        <div class="form-group">
         <label for="transmission">Transmission</label>
-        <select class="form-control" id="transmission" #transmissionFilter>
-          <option (click)="filterBy('transmission', '')">All</option>
-          <option *ngFor="let transmission of filters.transmission" (click)="filterBy('transmission', transmission)">{{transmission}}</option>
+        <select class="form-control" id="transmission" #transmissionFilter (change)="filterBy('transmission', $event)">
+          <option value="">All</option>
+          <option *ngFor="let transmission of filters.transmission" value={{transmission}}>{{transmission}}</option>
         </select>
       </div>
     </div>

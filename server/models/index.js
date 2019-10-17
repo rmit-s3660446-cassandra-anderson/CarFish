@@ -86,6 +86,7 @@ module.exports = {
         suburb: "Hawthorn",
         street: "Glen Street"
       },
+      status: 'Listed',
       rate: 50,
       startDate: "2019-10-01",
       endDate: "2020-02-20",
@@ -105,6 +106,7 @@ module.exports = {
         suburb: "Abbotsford",
         street: "Lithgow Street"
       },
+      status: 'Listed',
       rate: 40,
       startDate: "2019-10-01",
       endDate: "2019-11-15",
@@ -124,6 +126,7 @@ module.exports = {
         suburb: "Collingwood",
         street: "Budd Street"
       },
+      status: 'Listed',
       rate: 40,
       startDate: "2019-10-01",
       endDate: "2019-11-20",
@@ -143,6 +146,7 @@ module.exports = {
         suburb: "Collingwood",
         street: "Otter Street"
       },
+      status: 'Listed',
       rate: 60,
       startDate: "2019-10-01",
       endDate: "2019-11-10",
@@ -162,6 +166,7 @@ module.exports = {
         suburb: "Collingwood",
         street: "Dight Street"
       },
+      status: 'Listed',
       rate: 35,
       startDate: "2019-10-01",
       endDate: "2019-11-20",
@@ -181,6 +186,7 @@ module.exports = {
         suburb: "Seaford",
         street: "Coolibar ave"
       },
+      status: 'Listed',
       rate: 300,
       startDate: "2019-10-01",
       endDate: "2019-11-20",

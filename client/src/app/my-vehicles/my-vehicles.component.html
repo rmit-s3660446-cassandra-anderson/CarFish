@@ -1,0 +1,55 @@
+<mat-card class="contentbody" style=" background-color: #199fff; color:white;">My Vehicles</mat-card>
+<mat-card> 
+    <div *ngIf="addedCars" class="added-cars-container">
+        <table>
+            <tr>
+                <th>BRAND</th>
+                <th>MODEL</th>
+                <th>YEAR</th>
+                <th>SUBURB</th>
+                <th>STREET</th>
+                <th>RATE</th>
+                <th>FROM</th>
+                <th>TO</th>
+                <th>BOOKINGS</th>
+                <th>OPTION</th>
+            </tr>
+            <tr *ngFor="let addedCar of addedCars">
+                <td>{{addedCar.type.brand}}</td>
+                <td>{{addedCar.type.model}}</td>
+                <td>{{addedCar.type.year}}</td>
+                <td>{{addedCar.location.suburb}}</td>
+                <td>{{addedCar.location.street}}</td>
+                <td>${{addedCar.rate}} p/day</td>
+                <td>{{addedCar.startDate.split('T')[0]}}</td>
+                <td>{{addedCar.endDate.split('T')[0]}}</td>
+                <td><button type="button" class="btn btn-primary" (click)="displayBookingModal(addedCar)">View</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="setCarAsUnlisted(addedCar)">Unlist</button></td>
+            </tr>
+        </table>
+    </div>
+</mat-card>
+
+<div #bookingModal id="bookingModal" class="modal">
+  <div *ngIf="bookingInfo" class="modal-content">
+    <span class="close" (click)="closeBookingModal()">&times;</span>
+    <mat-card>
+      <table>
+          <tr>
+            <th>FROM</th>
+            <th>TO</th>
+            <th>COST</th>
+            <th>STATUS</th>
+            <th>UPDATE</th>
+          </tr>
+          <tr *ngFor="let info of bookingInfo">
+            <td>{{info.startDate.split('T')[0]}}</td>
+            <td>{{info.endDate.split('T')[0]}}</td>
+            <td>${{info.cost}}</td>
+            <td>{{info.status}}</td>
+            <td *ngIf="info.status != 'Returned'"><button type="button" class="btn btn-danger" (click)="markCarAsReturned(info._id)">Returned</button></td>
+          </tr>
+        </table>
+    </mat-card>
+  </div>
+</div>

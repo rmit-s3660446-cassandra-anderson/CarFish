@@ -14,6 +14,7 @@ const carSchema = new Schema({
     suburb: String,
     street: String
   },
+  status: String,
   rate: Number,
   startDate: Date,
   endDate: Date,
