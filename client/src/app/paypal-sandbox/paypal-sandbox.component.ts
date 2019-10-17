@@ -79,7 +79,7 @@ export class PaypalSandboxComponent implements OnInit {
     this.bookingService.bookCar(this.bookingDetails)
       .subscribe((res) => {
         console.log(res);
-        this.router.navigateByUrl('account');
+        this.router.navigateByUrl('account/details');
       });
   }
 }

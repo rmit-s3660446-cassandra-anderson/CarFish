@@ -9,6 +9,10 @@ import { SearchBarComponent } from './searchbar/searchbar.component';
 import { BookformComponent } from './bookform/bookform.component';
 import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
+import { AccountHistoryComponent } from './account-history/account-history.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { AddcarformComponent } from './addcarform/addcarform.component';
+import { MyVehiclesComponent } from './my-vehicles/my-vehicles.component';
 
 const routes: Routes = [
   {path: '', component: SearchBarComponent},
@@ -17,7 +21,13 @@ const routes: Routes = [
   {path: 'signup', component: SignupComponent},
   {path: 'booking', component: BookformComponent},
   {path: 'cars', component: CarsComponent},
-  {path: 'account', component: AccountComponent}
+  {path: 'account', component: AccountComponent,
+    children: [
+      {path: 'history', component: AccountHistoryComponent},
+      {path: 'details', component: AccountDetailsComponent},
+      {path: 'registercar', component: AddcarformComponent},
+      {path: 'myvehicles', component: MyVehiclesComponent}
+  ]}
 ];
 
 @NgModule({

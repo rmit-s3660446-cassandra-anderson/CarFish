@@ -6,6 +6,7 @@ const bookingSchema = new Schema({
   startDate: Date,
   endDate: Date,
   cost: Number,
+  status: String,
   user: {type: Schema.Types.ObjectId, ref: 'User'},
   car: {type: Schema.Types.ObjectId, ref: 'Car'}
 });

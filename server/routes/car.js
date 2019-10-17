@@ -39,6 +39,7 @@ router.post('/create', (req, res) => {
       suburb: req.body.location.suburb,
       street: req.body.location.street
     },
+    status: 'Listed',
     rate: req.body.rate,
     startDate: req.body.startDate,
     endDate: req.body.endDate,
@@ -61,18 +62,14 @@ router.post('/create', (req, res) => {
 //   // return res.send(req.dummy.cars[req.params.licensePlate]);
 // });
 
-//delete a car from the database
-// router.delete('/:licensePlate', (req, res) => {
-//   req.models.cars.findOne({'licensePlate': req.params.licensePlate}, function(err,car) {
-//     if (err) return res.send(err);
-//     if (!car) return res.send("No such car");
-//     car.remove(function (err, car) {
-//       if (err) return res.send(err);
-//       return res.send(car);
-//     });
-//   // delete req.dummy.cars[req.params.carId];
-//   // return res.send(req.dummy.cars);
-//   });
-// });
+// unlist a car
+router.delete('/:carId', (req, res) => {
+  req.models.cars.findById(req.params.carId, async function(err, car) {
+    if (err) return res.send(err);
+    car.status = "Unlisted";
+    await car.save();
+    return res.send(car);
+  });
+});
 
 module.exports = router;

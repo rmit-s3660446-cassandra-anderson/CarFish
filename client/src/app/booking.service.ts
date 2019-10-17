@@ -35,6 +35,10 @@ export class BookingService {
     return this.http.get<any>(`${this.bookingURL}/?car=${car}`)
   }
 
+  markCarAsReturned(booking: string): Observable<any> {
+    return this.http.put<any>(`${this.bookingURL}`, {id: booking}, this.httpOptions);
+  }
+
   setBookedCar(bookedCar: any): void {
     this.bookedCar = bookedCar;
   }

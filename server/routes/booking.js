@@ -64,6 +64,7 @@ router.post('/', (req, res) => {
   req.models.bookings.create({
     startDate: req.body.startDate,
     endDate: req.body.endDate,
+    status: getStatus(req.body.startDate, req.body.endDate),
     user: req.body.user,
     cost: req.body.cost,
     car: req.body.car
@@ -73,15 +74,45 @@ router.post('/', (req, res) => {
   });
 });
 
+//mark car as returned
+router.put('/', (req, res) => {
+  console.log(req.body);
+  req.models.bookings.findById(req.body.id, async function(err, booking) {
+    if (err) return res.send(err);
+    booking.status = "Returned";
+    await booking.save();
+    let bookings = await req.models.bookings.find({'car': booking.car});
+    return res.send(bookings);
+  });
+});
+
 module.exports = router;
 
 function findMatchingCars(bookings, req, res) {
   let processed = 0;
   bookings.forEach(async (booking, index) => {
     booking.car = await req.models.cars.findById(booking.car);
+    if(booking.status != "Returned") {
+      booking.status = getStatus(booking.startDate, booking.endDate);
+    }
     processed++;
     if(processed == bookings.length) {
       return res.send(bookings);
     }
   });
+}
+
+function getStatus(startDate, endDate) {
+  let current = new Date();
+  let start = new Date(startDate);
+  let end = new Date(endDate);
+  if((current.getTime() - start.getTime()) < 0) {
+    return "To be picked up";
+  }
+  if((current.getTime() - end.getTime()) > 0) {
+    return "Overdue";
+  }
+  let diffTime = Math.abs(end - current);
+  let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return "Due in " + diffDays + " days";
 }

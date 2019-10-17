@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { BookingService } from '../booking.service';
 import { CarService } from '../car.service';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-vehicles',
@@ -10,17 +12,50 @@ import { UserService } from '../user.service';
 export class MyVehiclesComponent implements OnInit {
   addedCars = [];
   selectedCar: any;
+  bookingInfo: any;
+  @ViewChild('bookingModal', {static: false}) bookingModal: ElementRef;
+
   constructor(
     private carService: CarService,
-    private userService: UserService
+    private userService: UserService,
+    private bookingService: BookingService,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.carService.getCarsByUser(this.userService.getCurrentUser()._id)
-      .subscribe((addedCars) => this.addedCars = addedCars);
+      .subscribe((addedCars) => this.addedCars = this.displayListedCars(addedCars));
   }
 
   setCarAsUnlisted(car: any): void {
-  //this is going to require the schema to be updated and an 'update status' function added to the .ts
+    this.carService.unlistCar(car._id)
+      .subscribe((res) => {
+        console.log(res);
+        this.addedCars = this.addedCars.filter((car) => car._id != res._id);
+      });
+  }
+
+  displayListedCars(addedCars: any): any {
+    addedCars = addedCars.filter((car) => car.status == "Listed");
+    console.log(addedCars);
+    return addedCars;
+  }
+
+  displayBookingModal(car: any): void {
+    this.bookingService.getBookingsByCar(car._id)
+      .subscribe((bookings) => {
+        this.bookingInfo = bookings;
+        this.bookingModal.nativeElement.style.display = "block";
+      });
+  }
+
+  markCarAsReturned(booking: any): void {
+    this.bookingService.markCarAsReturned(booking)
+      .subscribe((res) => this.bookingInfo = res);
+  }
+
+  closeBookingModal(): void {
+    this.bookingInfo = "";
+    this.bookingModal.nativeElement.style.display = "none";
   }
 }

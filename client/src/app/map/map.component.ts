@@ -1,5 +1,6 @@
 /// <reference types="googlemaps" />
 import { Component, OnInit, Input, OnChanges, SimpleChanges  } from '@angular/core';
+import { MapsService } from '../maps.service';
 
 @Component({
   selector: 'app-map',
@@ -7,13 +8,16 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges  } from '@angular/co
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnChanges {
-
   @Input() displayResults: any;
 
-  // we must hard code the starting coordinate and a specified zoom
-  mapLatitude = 0;
-  mapLongitude = 0;
+  // the starting location will be the Location
+  // grabbed from the user's IP address
+  latitude: any;
+  longitude: any;
+  // this is how zoomed in the map starts at
   zoom = 6;
+
+  location: any;
 
   selectedMarker;
   service: any;
@@ -30,10 +34,16 @@ export class MapComponent implements OnInit, OnChanges {
     this.markers = [];
   }
 
-  constructor() { }
+  constructor(private map: MapsService) { }
 
   ngOnInit() {
     this.service = new google.maps.places.PlacesService(document.createElement('div'));
+    this.map.getLocation().subscribe(data => {
+      console.log(data);
+      this.latitude = data.latitude;
+      this.longitude = data.longitude;
+    });
+    this.setCurrentPosition();
   }
 
   /* Whenever the user searches, the new search results gets passed
@@ -68,6 +78,15 @@ export class MapComponent implements OnInit, OnChanges {
         }
       });
     });
+  }
+
+  setCurrentPosition() {
+    if('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.latitude = position.coords.latitude;
+        this.longitude = position.coords.longitude;
+      });
+    }
   }
 
 }
