@@ -39,7 +39,7 @@ export class BookformComponent implements OnInit {
         this.unavailableDates = unavailableDates;
         this.datePickerConfig = {
           containerClass: 'theme-dark-blue',
-          minDate: new Date(car.startDate),
+          minDate: new Date(),
           maxDate: new Date(car.endDate),
           datesDisabled: this.convertToDateFormat(unavailableDates)
         };

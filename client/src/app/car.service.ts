@@ -31,6 +31,10 @@ export class CarService {
     return this.http.get<any>(`${this.carURL}/?user=${user}`);
   }
 
+  unlistCar(car: string): Observable<any> {
+    return this.http.delete<any>(`${this.carURL}/${car}`);
+  }
+
   setSelectedCar(selectedCar: any): void {
     this.selectedCar = selectedCar;
   }

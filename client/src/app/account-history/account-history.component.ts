@@ -27,6 +27,10 @@ export class AccountHistoryComponent implements OnInit {
   ngOnInit() {
     this.carService.getCarsByUser(this.userService.getCurrentUser()._id)
       .subscribe((addedCars) => this.addedCars = addedCars);
+    this.getBookingsByUser();
+  }
+
+  getBookingsByUser(): void {
     this.bookingService.getBookingsByUser(this.userService.getCurrentUser()._id)
       .subscribe((bookedCars) => this.bookedCars = bookedCars);
   }
