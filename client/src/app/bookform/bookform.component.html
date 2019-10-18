@@ -45,7 +45,7 @@
         <p style="padding-bottom: 15px;">Select dates : <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig"  (bsValueChange)="validateDateRange($event)" placeholder="Enter Start/End Date"></p>
         <span style="display: none" [class.error]="invalidRange">{{errorMessage}}</span>
         <span style="display: none" [class.error]="bookingAttempt && !startDate">Please select a date range!</span>
-        <div *ngIf="!invalidRange && bookingAttempt" class="payment" (click)="bookCar()">
+        <div *ngIf="!invalidRange && bookingAttempt" class="payment">
             <app-paypal-sandbox [bookingDetails]="bookingDetails"></app-paypal-sandbox>
         </div>
       </div>

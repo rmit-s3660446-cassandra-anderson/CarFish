@@ -1,11 +1,10 @@
-/// <reference types="../../node_modules/@types/googlemaps/index.d.ts" />
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { CarService } from '../car.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-//import { } from '@types/googlemaps'
+import {} from 'googlemaps';
 
 @Component({
   selector: 'app-searchbar',
@@ -76,7 +75,7 @@ export class SearchBarComponent implements OnInit {
          the address. We're grabbing the suburb */
       const addressLength = place['address_components'].length;
       // the suburb is the fifth element from the end of the array if a suburb is given
-      var suburb = "";
+      let suburb: any;
       if (addressLength >= 5) {
         suburb = place['address_components'][addressLength - 5];
       } else {
