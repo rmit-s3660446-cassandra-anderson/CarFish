@@ -1,4 +1,4 @@
-/// <reference types="googlemaps" />
+/// <reference types="../../node_modules/@types/googlemaps/index.d.ts" />
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, EventEmitter, Output, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';

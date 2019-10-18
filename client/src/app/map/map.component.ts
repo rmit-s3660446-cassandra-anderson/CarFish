@@ -1,4 +1,4 @@
-/// <reference types="googlemaps" />
+import {} from "googlemaps";
 import { Component, OnInit, Input, OnChanges, SimpleChanges  } from '@angular/core';
 import { MapsService } from '../maps.service';
 
@@ -72,8 +72,8 @@ export class MapComponent implements OnInit, OnChanges {
             this.addMarker(results[i].geometry.location, info);
           }
           // sets where the map is looking
-          this.mapLatitude = results[0].geometry.location.lat();
-          this.mapLongitude = results[0].geometry.location.lng();
+          this.latitude = results[0].geometry.location.lat();
+          this.longitude = results[0].geometry.location.lng();
           this.zoom = 14;
         }
       });
