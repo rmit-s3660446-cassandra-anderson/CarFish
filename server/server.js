@@ -12,7 +12,7 @@ const cors = require('cors');
 //initialise the express app
 const app = express();
 //configure this to whatever port you would like to listen on
-const port = 9000;
+const port = process.env.PORT || 8080;
 const cleanAndSeedDB = false;
 
 //to make use of request data, we need to parse it first
