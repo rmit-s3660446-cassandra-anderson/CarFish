@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class UserService {
 
-  private userURL = 'http://localhost:9000/users';
+  private userURL = 'https://carfish-api.herokuapp.com:9000/users';
 
   currentUser: any;
 
