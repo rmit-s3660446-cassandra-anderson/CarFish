@@ -7,7 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BookingService {
-  private bookingURL = 'https://carfish-api.herokuapp.com:9000/bookings';
+  private bookingURL = 'https://carfish-api.herokuapp.com/bookings';
   bookedCar: any;
 
   httpOptions = {

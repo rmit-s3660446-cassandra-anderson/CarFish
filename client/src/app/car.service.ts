@@ -7,7 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CarService {
-  private carURL = 'https://carfish-api.herokuapp.com:9000/cars';
+  private carURL = 'https://carfish-api.herokuapp.com/cars';
   selectedCar: any;
 
   httpOptions = {
