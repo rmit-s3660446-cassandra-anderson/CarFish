@@ -1,23 +1,32 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+/// <reference types="../../node_modules/@types/googlemaps/index.d.ts" />
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, EventEmitter, Output, Input } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { CarService } from '../car.service';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+//import { } from '@types/googlemaps'
 
 @Component({
   selector: 'app-searchbar',
   templateUrl: './searchbar.component.html',
   styleUrls: ['./searchbar.component.css']
 })
+
 export class SearchBarComponent implements OnInit {
-  @ViewChild('searchLocation', {static: false}) searchLocation: ElementRef;
+  // to get the google autocomplete to work
+  @Input() addressType: string;
+  @Output() setAddress: EventEmitter<any> = new EventEmitter();
+  @ViewChild('addressText', {static: false}) addressText: any;
+  autocompleteInput: string;
+
+  // to get the normal autofill to work
   @ViewChild('brandFilter', {static: false}) brandFilter: ElementRef;
   @ViewChild('doorsFilter', {static: false}) doorsFilter: ElementRef;
   @ViewChild('transmissionFilter', {static: false}) transmissionFilter: ElementRef;
   @ViewChild('priceFilter', {static: false}) priceFilter: ElementRef;
   searchResults: any;
-  matchingLocations = [];
-  private searchInput = new Subject<string>();
+
   filteredResults = {
     results: [],
     filterBy: {
@@ -26,6 +35,7 @@ export class SearchBarComponent implements OnInit {
       transmission: ""
     }
   };
+
   resultsError: string;
   datePickerConfig: Partial<BsDatepickerConfig>;
   filters = {
@@ -47,33 +57,53 @@ export class SearchBarComponent implements OnInit {
       });
 
     this.datePickerConfig = { containerClass: 'theme-dark-blue' };
+  }
 
-    this.searchInput.pipe(
-      // wait 300ms after each keystroke before considering the term
-      debounceTime(300),
+  /* as the user types in a location, google autofills it.
+    when the user selects a location from the list, the Object
+    that contains the location's details is returned and passed
+    to the CarService where a list of cars in that area are generated
+    */
+  ngAfterViewInit() {
+    const autocomplete = new google.maps.places.Autocomplete(this.addressText.nativeElement,
+    {
+      componentRestrictions: { country: 'AU' }, //restricting the search range to Australia
+      types: [this.addressType] // can modify how detailed the address is
+    });
+    google.maps.event.addListener(autocomplete, 'place_changed', () => {
+      const place = autocomplete.getPlace();
+      /* there is an array that stores the different components of
+         the address. We're grabbing the suburb */
+      const addressLength = place['address_components'].length;
+      // the suburb is the fifth element from the end of the array if a suburb is given
+      var suburb = "";
+      if (addressLength >= 5) {
+        suburb = place['address_components'][addressLength - 5];
+      } else {
+        // if there's no fifth element, just use the first one
+        suburb = place['address_components'][0];
+      }
+      console.log("Place object", place);
+      console.log("place location", place['geometry']['location'].lat(), place['geometry']['location'].lng());
+      //console.log("party in the 'burbs", typeof suburb['long_name']);
 
-      // ignore new term if same as previous term
-      distinctUntilChanged(),
-
-      // switch to new search observable each time the term changes
-      switchMap((input: string) => this.carService.carSearch(input)),
-    ).subscribe((results) => {
-      this.matchingLocations = [];
-      results.forEach((result) => {
-        if(!this.matchingLocations.includes(result.location.suburb)) {
-          this.matchingLocations.push(result.location.suburb);
-        }
-      })
-      this.searchResults = results;
+      // now that we have the suburb, we can pass it to the casService
+      this.carService.carSearch(suburb['long_name']).subscribe((results) => {
+        console.log("after callback ", results);
+        this.searchResults = results;
+      });
     });
   }
 
-  // Push a search term into the observable stream.
-  search(input: string): void {
-    this.searchInput.next(input);
+  // Push a search term into the observable stream
+  // unsure if needed ¯\_(ツ)_/¯
+  invokeEvent(place: Object) {
+    this.setAddress.emit(place);
+    console.log("invoke ", place);
   }
 
   validateSearch(dateRange: string, location: string): void {
+    console.log("location ", location);
     this.resetValues();
     this.filterResultsByLocation(location);
 
@@ -97,8 +127,9 @@ export class SearchBarComponent implements OnInit {
   }
 
   filterResultsByLocation(location: string): void {
+
     if(this.searchResults) {
-      this.filteredResults.results = this.searchResults.filter((res) => res.location.suburb == location);
+      this.filteredResults.results = this.searchResults.filter((res) => location.includes(res.location.suburb));
     }
   }
 
@@ -106,11 +137,6 @@ export class SearchBarComponent implements OnInit {
     this.filteredResults.results = this.filteredResults.results.filter((result) => {
       return (startDate <= Date.parse(result.startDate) && endDate >= Date.parse(result.endDate));
     });
-  }
-
-  selectLocation(location: string): void {
-    this.matchingLocations = [];
-    this.searchLocation.nativeElement.value = location;
   }
 
   populateDropDownFilters(): void {
@@ -151,7 +177,6 @@ export class SearchBarComponent implements OnInit {
   resetValues(): void {
     this.filteredResults.results = [];
     this.resultsError = "";
-    this.matchingLocations = [];
     Object.keys(this.filters).forEach((filter) => this.filters[filter] = []);
     Object.keys(this.filteredResults.filterBy).forEach((filter) => this.filteredResults.filterBy[filter] = "");
     this.brandFilter.nativeElement.value = '';

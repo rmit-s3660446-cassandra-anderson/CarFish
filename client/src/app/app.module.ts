@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatIconModule, MatCardModule, MatCheckboxModule, MatGridListModule, MatButtonModule, MatSidenavModule, MatToolbarModule, MatFormFieldModule, MatSelectModule, MatOptionModule, MatInputModule } from '@angular/material';
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -77,6 +78,7 @@ import { MyVehiclesComponent } from './my-vehicles/my-vehicles.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyC1JkBrac8GYfzVuDOYYvfR2LbVIS77jyA'
     }),
+    AgmSnazzyInfoWindowModule,
     BsDatepickerModule.forRoot(),
     NgxPayPalModule
   ],

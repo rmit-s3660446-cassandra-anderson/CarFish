@@ -2,18 +2,12 @@
   <h4><label for="search-box">Car Search</label></h4>
 
   <div id="search-box">
-    <input #searchLocation id="search-location" (input)="search(searchLocation.value)"
+    <!--<input searchLocation id="searchLocation" [(ngModel)]="autocompleteInput">-->
+    <input #addressText id="search-location" [(ngModel)]="autocompleteInput"
     placeholder="Search by suburb" />
     <input #dateRange type="text" id="date-range" bsDaterangepicker [bsConfig]="datePickerConfig" placeholder="Start Date - End Date">
-    <button (click)="validateSearch(dateRange.value, searchLocation.value)">Search</button>
+    <button (click)="validateSearch(dateRange.value, addressText.value)">Search</button>
 
-    <ul *ngIf="matchingLocations.length > 0" class="search-result">
-      <li *ngFor="let matchingLocation of matchingLocations" >
-        <a (click)="selectLocation(matchingLocation)">
-          {{matchingLocation}}
-        </a>
-      </li>
-    </ul>
   </div>
 </div>
 <div class="container-fluid">
@@ -65,6 +59,6 @@
     <app-searchresults [displayResults]="filteredResults" [resultsError]="resultsError"></app-searchresults>
   </div>
   <div class="div2">
-    <app-map></app-map>
+    <app-map [displayResults]="filteredResults.results"></app-map>
   </div>
 </div>

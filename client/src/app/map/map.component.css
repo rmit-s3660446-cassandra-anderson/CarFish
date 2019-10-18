@@ -11,6 +11,10 @@
   width: 25%;
 }
 
+#infoBold {
+  font-weight: bold;
+}
+
 #infoBox {
   margin: 0 auto;
 }
