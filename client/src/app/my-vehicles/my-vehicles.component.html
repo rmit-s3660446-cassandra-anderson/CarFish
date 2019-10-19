@@ -3,9 +3,7 @@
     <div *ngIf="addedCars" class="added-cars-container">
         <table>
             <tr>
-                <th>BRAND</th>
-                <th>MODEL</th>
-                <th>YEAR</th>
+                <th>CAR</th>
                 <th>SUBURB</th>
                 <th>STREET</th>
                 <th>RATE</th>
@@ -15,9 +13,7 @@
                 <th>OPTION</th>
             </tr>
             <tr *ngFor="let addedCar of addedCars">
-                <td>{{addedCar.type.brand}}</td>
-                <td>{{addedCar.type.model}}</td>
-                <td>{{addedCar.type.year}}</td>
+                <a (click)="displayCarModal(addedCar)"><td><u>{{addedCar.type.brand}} {{addedCar.type.model}}</u></td></a>
                 <td>{{addedCar.location.suburb}}</td>
                 <td>{{addedCar.location.street}}</td>
                 <td>${{addedCar.rate}} p/day</td>
@@ -36,18 +32,53 @@
     <mat-card>
       <table>
           <tr>
+            <th>USER</th>
             <th>FROM</th>
             <th>TO</th>
-            <th>COST</th>
+            <th>PAID</th>
             <th>STATUS</th>
             <th>UPDATE</th>
           </tr>
           <tr *ngFor="let info of bookingInfo">
+            <td>{{info.user.username}}</td>
             <td>{{info.startDate.split('T')[0]}}</td>
             <td>{{info.endDate.split('T')[0]}}</td>
             <td>${{info.cost}}</td>
             <td>{{info.status}}</td>
             <td *ngIf="info.status != 'Returned'"><button type="button" class="btn btn-danger" (click)="markCarAsReturned(info._id)">Returned</button></td>
+          </tr>
+          <tr>
+            <td>TOTAL</td>
+            <td></td>
+            <td></td>
+            <td>${{bookingTotal}}</td>
+            <td></td>
+          </tr>
+        </table>
+    </mat-card>
+  </div>
+</div>
+
+<div #carModal id="carModal" class="modal">
+  <div *ngIf="selectedCar" class="modal-content">
+    <span class="close" (click)="closeCarModal()">&times;</span>
+    <mat-card>
+      <table>
+          <tr>
+            <th>BRAND</th>
+            <th>MODEL</th>
+            <th>YEAR</th>
+            <th>DOORS</th>
+            <th>TRANSMISSION</th>
+            <th>OWNER</th>
+          </tr>
+          <tr>
+            <td>{{selectedCar.type.brand}}</td>
+            <td>{{selectedCar.type.model}}</td>
+            <td>{{selectedCar.type.year}}</td>
+            <td>{{selectedCar.type.doors}}</td>
+            <td>{{selectedCar.type.transmission}}</td>
+            <td>{{selectedCar.user.username}}</td>
           </tr>
         </table>
     </mat-card>

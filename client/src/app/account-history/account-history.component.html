@@ -7,16 +7,45 @@
           <th>FROM</th>
           <th>TO</th>
           <th>STATUS</th>
-          <th>COST</th>
+          <th>PAID</th>
         </tr>
         <tr *ngFor="let bookedCar of bookedCars">
-          <a (click)="displayCarModal(bookedCar)"><td><u>{{bookedCar.car.type.brand}} {{bookedCar.car.type.model}}</u></td></a>
+          <a (click)="displayCarModal(bookedCar.car)"><td><u>{{bookedCar.car.type.brand}} {{bookedCar.car.type.model}}</u></td></a>
           <td>{{bookedCar.startDate.split('T')[0]}}</td>
           <td>{{bookedCar.endDate.split('T')[0]}}</td>
           <td>{{bookedCar.status}}</td>
           <td>${{bookedCar.cost}}</td>
         </tr>
       </table>
+  </mat-card>
+</div>
+
+<br>
+<mat-card style="background-color: #199fff; color:white;">Added Cars</mat-card>
+<div *ngIf="addedCars" class="added-cars-container">
+  <mat-card>
+    <table>
+      <tr>
+        <th>CAR</th>
+        <th>SUBURB</th>
+        <th>STREET</th>
+        <th>RATE</th>
+        <th>FROM</th>
+        <th>TO</th>
+        <th>STATUS</th>
+        <th>BOOKINGS</th>
+      </tr>
+      <tr *ngFor="let addedCar of addedCars">
+        <a (click)="displayCarModal(addedCar)"><td><u>{{addedCar.type.brand}} {{addedCar.type.model}}</u></td></a>
+        <td>{{addedCar.location.suburb}}</td>
+        <td>{{addedCar.location.street}}</td>
+        <td>${{addedCar.rate}} p/day</td>
+        <td>{{addedCar.startDate.split('T')[0]}}</td>
+        <td>{{addedCar.endDate.split('T')[0]}}</td>
+        <td>{{addedCar.status}}</td>
+        <td><button class="btn btn-primary" (click)="displayBookingModal(addedCar)">View</button></td>
+      </tr>
+    </table>
   </mat-card>
 </div>
 
@@ -31,50 +60,19 @@
             <th>YEAR</th>
             <th>DOORS</th>
             <th>TRANSMISSION</th>
+            <th>OWNER</th>
           </tr>
           <tr>
-            <td>{{selectedCar.car.type.brand}}</td>
-            <td>{{selectedCar.car.type.model}}</td>
-            <td>{{selectedCar.car.type.year}}</td>
-            <td>{{selectedCar.car.type.doors}}</td>
-            <td>{{selectedCar.car.type.transmission}}</td>
+            <td>{{selectedCar.type.brand}}</td>
+            <td>{{selectedCar.type.model}}</td>
+            <td>{{selectedCar.type.year}}</td>
+            <td>{{selectedCar.type.doors}}</td>
+            <td>{{selectedCar.type.transmission}}</td>
+            <td>{{selectedCar.user.username}}</td>
           </tr>
         </table>
     </mat-card>
   </div>
-</div>
-
-<br>
-<mat-card style="background-color: #199fff; color:white;">Added Cars</mat-card>
-<div *ngIf="addedCars" class="added-cars-container">
-  <mat-card>
-    <table>
-      <tr>
-        <th>BRAND</th>
-        <th>MODEL</th>
-        <th>YEAR</th>
-        <th>SUBURB</th>
-        <th>STREET</th>
-        <th>RATE</th>
-        <th>FROM</th>
-        <th>TO</th>
-        <th>STATUS</th>
-        <th>BOOKINGS</th>
-      </tr>
-      <tr *ngFor="let addedCar of addedCars">
-        <td>{{addedCar.type.brand}}</td>
-        <td>{{addedCar.type.model}}</td>
-        <td>{{addedCar.type.year}}</td>
-        <td>{{addedCar.location.suburb}}</td>
-        <td>{{addedCar.location.street}}</td>
-        <td>${{addedCar.rate}} p/day</td>
-        <td>{{addedCar.startDate.split('T')[0]}}</td>
-        <td>{{addedCar.endDate.split('T')[0]}}</td>
-        <td>{{addedCar.status}}</td>
-        <td><button class="btn btn-primary" (click)="displayBookingModal(addedCar)">View</button></td>
-      </tr>
-    </table>
-  </mat-card>
 </div>
 
 <div #bookingModal id="bookingModal" class="modal">
@@ -83,16 +81,25 @@
     <mat-card>
       <table>
           <tr>
+            <th>USER</th>
             <th>FROM</th>
             <th>TO</th>
-            <th>COST</th>
+            <th>PAID</th>
             <th>STATUS</th>
           </tr>
           <tr *ngFor="let info of bookingInfo">
+            <td>{{info.user.username}}</td>
             <td>{{info.startDate.split('T')[0]}}</td>
             <td>{{info.endDate.split('T')[0]}}</td>
             <td>${{info.cost}}</td>
             <td>{{info.status}}</td>
+          </tr>
+          <tr>
+            <td>TOTAL</td>
+            <td></td>
+            <td></td>
+            <td>${{bookingTotal}}</td>
+            <td></td>
           </tr>
         </table>
     </mat-card>

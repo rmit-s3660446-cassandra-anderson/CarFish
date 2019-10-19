@@ -19,8 +19,8 @@
     <div *ngIf="getCurrentUser(); else loggedOut">
       <div fxShow="true" fxHide.lt-md="true">
         <nav>
-          <a mat-button routerLink="/prices">Prices</a>
-          <a mat-button routerLink="/cars">Cars</a>
+<!--           <a mat-button routerLink="/prices">Prices</a>
+          <a mat-button routerLink="/cars">Cars</a> -->
           <a mat-button routerLink="/about" routerLinkActive="active">About</a>
           <a mat-button (click)="logout()">Log Out</a>
           <a mat-button routerLink="/account/details">{{ getCurrentUser().username }}</a>
@@ -31,8 +31,8 @@
     <ng-template #loggedOut>
       <div fxShow="true" fxHide.lt-md="true">
         <nav>
-          <a mat-button routerLink="/prices">Prices</a>
-          <a mat-button routerLink="/cars">Cars</a>
+       <!--    <a mat-button routerLink="/prices">Prices</a>
+          <a mat-button routerLink="/cars">Cars</a> -->
           <a mat-button routerLink="/about" routerLinkActive="active">About</a>
           <a mat-button routerLink="/login">Log in</a>
           <a mat-button routerLink="/signup">Sign up</a>

@@ -14,6 +14,7 @@ export class AccountHistoryComponent implements OnInit {
   addedCars = [];
   selectedCar: any;
   bookingInfo: any;
+  bookingTotal = 0;
   @ViewChild('carModal', {static: false}) carModal: ElementRef;
   @ViewChild('bookingModal', {static: false}) bookingModal: ElementRef;
 
@@ -37,7 +38,15 @@ export class AccountHistoryComponent implements OnInit {
 
   displayCarModal(car: any): void {
     this.selectedCar = car;
+    console.log(this.selectedCar);
     this.carModal.nativeElement.style.display = "block";
+  }
+
+  getBookingTotal(bookings: any): void {
+    this.bookingTotal = 0;
+    bookings.forEach((booking) => {
+      this.bookingTotal += parseInt(booking.cost);
+    });
   }
 
   closeCarModal(): void {
@@ -49,6 +58,7 @@ export class AccountHistoryComponent implements OnInit {
     this.bookingService.getBookingsByCar(car._id)
       .subscribe((bookings) => {
         this.bookingInfo = bookings;
+        this.getBookingTotal(bookings);
         this.bookingModal.nativeElement.style.display = "block";
       });
   }

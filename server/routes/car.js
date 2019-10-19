@@ -8,19 +8,25 @@ router.get('/', (req, res) => {
   if(req.query.suburb) {
     req.models.cars.find({'location.suburb': { $regex: req.query.suburb, $options: "i" }}, function(err,cars) {
       if (err) return res.send(err);
-      if (cars) return res.send(cars);
-      return res.send([]);
+      if (cars) {
+        findMatchingUsers(cars, req, res);
+      } else {
+        return res.send([]);
+      }
     });
   } else if(req.query.user) {
     req.models.cars.find({'user': req.query.user}, function(err,cars) {
       if (err) return res.send(err);
-      if (cars) return res.send(cars);
-      return res.send([]);
+      if (cars) {
+        findMatchingUsers(cars, req, res);
+      } else {
+        return res.send([]);
+      }
     });
   } else {
     req.models.cars.find({}, function(err, cars) {
       if (err) return res.send(err);
-      return res.send(cars);
+      return findMatchingUsers(cars, req, res);
     });
   }
 });
@@ -73,3 +79,14 @@ router.delete('/:carId', (req, res) => {
 });
 
 module.exports = router;
+
+function findMatchingUsers(cars, req, res) {
+  let processed = 0;
+  cars.forEach(async (car, index) => {
+    car.user = await req.models.users.findById(car.user);
+    processed++;
+    if(processed == cars.length) {
+      return res.send(cars);
+    }
+  });
+}

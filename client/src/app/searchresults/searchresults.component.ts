@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CarService } from '../car.service'
+import { CarService } from '../car.service';
+import { UserService } from '../user.service';
 import { $ } from '../../../node_modules/protractor';
 
 @Component({
@@ -10,12 +11,15 @@ import { $ } from '../../../node_modules/protractor';
 export class SearchresultsComponent implements OnInit {
   @Input() displayResults: any;
   @Input() resultsError: string;
+  currentUser: any;
 
   constructor(
-    private carService: CarService
+    private carService: CarService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
+    this.currentUser = this.userService.getCurrentUser() ? this.userService.getCurrentUser() : "";
   }
 
   setSelectedCar(selectedCar: any) {
@@ -34,7 +38,4 @@ export class SearchresultsComponent implements OnInit {
     }
     return false;
   }
-  
-
- 
 }

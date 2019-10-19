@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
       }
     });
   } else {
-    req.models.bookings.find({}, function(err, cars) {
+    req.models.bookings.find({}, function(err, bookings) {
       if (err) return res.send(err);
       return res.send(bookings);
     });
@@ -92,6 +92,8 @@ function findMatchingCars(bookings, req, res) {
   let processed = 0;
   bookings.forEach(async (booking, index) => {
     booking.car = await req.models.cars.findById(booking.car);
+    booking.car.user = await req.models.users.findById(booking.car.user);
+    booking.user = await req.models.users.findById(booking.user);
     if(booking.status != "Returned") {
       booking.status = getStatus(booking.startDate, booking.endDate);
     }

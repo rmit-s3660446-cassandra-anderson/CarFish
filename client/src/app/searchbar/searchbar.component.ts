@@ -126,7 +126,6 @@ export class SearchBarComponent implements OnInit {
   }
 
   filterResultsByLocation(location: string): void {
-
     if(this.searchResults) {
       this.filteredResults.results = this.searchResults.filter((res) => location.includes(res.location.suburb));
     }

@@ -24,9 +24,18 @@
             <div class="description">
               <p>Available from : {{result.startDate.split('T')[0]}}</p>
               <p>Available until : {{result.endDate.split('T')[0]}}</p>
+              <p>Owner : {{result.user.username}}</p>
+              <p>Status : <b *ngIf="result.status=='Unlisted'; else listed">{{result.status}}</b>
+                <ng-template #listed>
+                  {{result.status}}
+                </ng-template>
+              </p>
             </div>
-            <div class="product-info">
-              <a class="btn btn-danger" (click)="setSelectedCar(result)" routerLink="/booking">Book</a>
+            <div *ngIf="result.status=='Listed'" class="product-info">
+              <span *ngIf="currentUser && currentUser.username == result.user.username; else otherCar" >You own this car!</span>
+              <ng-template #otherCar>
+               <a class="btn btn-danger" (click)="setSelectedCar(result)" routerLink="/booking">Book</a>
+              </ng-template>
             </div>
           </div>
         </div>
